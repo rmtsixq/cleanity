@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blog - Cleanity</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="blog.css">
+</head>
+<body>
+    <!-- Animated Background -->
+    <div class="background-animation">
+        <div class="floating-orb orb-1"></div>
+        <div class="floating-orb orb-2"></div>
+        <div class="floating-orb orb-3"></div>
+        <div class="floating-orb orb-4"></div>
+        <div class="floating-orb orb-5"></div>
+    </div>
+
+    <!-- Header -->
+    <header class="glass-header">
+        <nav class="nav-container">
+            <div class="logo-container">
+                <div class="logo-animation">
+                    <span class="logo-text">Cleanity</span>
+                    <div class="logo-underline"></div>
+                </div>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="index.html" class="nav-link">Home</a></li>
+                <li><a href="gallery.html" class="nav-link">Gallery</a></li>
+                <li><a href="team.html" class="nav-link">Our Team</a></li>
+                <li><a href="contact.html" class="nav-link">Contact</a></li>
+                <li><a href="join.html" class="nav-link">Join Us</a></li>
+                <li><a href="blog.html" class="nav-link active">Blog</a></li>
+            </ul>
+            <div class="nav-toggle">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Blog Hero Section -->
+    <section class="blog-hero">
+        <div class="hero-container">
+            <div class="hero-content">
+                <div class="hero-badge">
+                    <span class="badge-text">📝 Stories & Insights</span>
+                </div>
+                <h1 class="hero-title">
+                    <span class="title-line">Stories From</span>
+                    <span class="title-line title-accent">The Movement</span>
+                </h1>
+                <p class="hero-description">
+                    Read about our latest cleanup adventures, environmental insights, success stories, and tips for making a positive impact in your community.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Blog Categories -->
+    <section class="blog-categories">
+        <div class="section-container">
+            <div class="category-tabs">
+                <button class="category-btn active" data-category="all">
+                    <span>All Posts</span>
+                    <div class="btn-ripple"></div>
+                </button>
+                <button class="category-btn" data-category="stories">
+                    <span>📖 Success Stories</span>
+                    <div class="btn-ripple"></div>
+                </button>
+                <button class="category-btn" data-category="guides">
+                    <span>📋 How-To Guides</span>
+                    <div class="btn-ripple"></div>
+                </button>
+                <button class="category-btn" data-category="insights">
+                    <span>💡 Environmental Insights</span>
+                    <div class="btn-ripple"></div>
+                </button>
+                <button class="category-btn" data-category="updates">
+                    <span>📢 Updates</span>
+                    <div class="btn-ripple"></div>
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Featured Article -->
+    <section class="featured-article">
+        <div class="section-container">
+            <div class="glass-card featured-card">
+                <div class="featured-content">
+                    <div class="featured-badge">Featured Post</div>
+                    <h2 class="featured-title">How We Cleaned 50 Beaches in 30 Days: The Global Beach Challenge Results</h2>
+                    <p class="featured-excerpt">Our biggest initiative yet brought together 10,000+ volunteers across 6 continents for an unprecedented beach cleanup challenge. Here's what we learned and the incredible impact we made together.</p>
+                    <div class="featured-meta">
+                        <div class="author-info">
+                            <div class="author-avatar">
+                                <span class="avatar-icon">👤</span>
+                            </div>
+                            <div class="author-details">
+                                <span class="author-name">Alex Chen</span>
+                                <span class="author-role">Founder & CEO</span>
+                            </div>
+                        </div>
+                        <div class="article-stats">
+                            <span class="stat">📅 March 15, 2024</span>
+                            <span class="stat">⏱️ 8 min read</span>
+                            <span class="stat">❤️ 234 likes</span>
+                        </div>
+                    </div>
+                    <button class="btn btn-primary read-more-btn">
+                        <span>Read Full Story</span>
+                        <div class="btn-ripple"></div>
+                    </button>
+                </div>
+                <div class="featured-image">
+                    <div class="image-placeholder">
+                        <span class="placeholder-icon">🏖️</span>
+                        <span class="placeholder-text">Global Beach Challenge</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Blog Posts Grid -->
+    <section class="blog-posts-section">
+        <div class="section-container">
+            <div class="blog-grid">
+                <!-- Success Story -->
+                <article class="blog-post" data-category="stories">
+                    <div class="glass-card post-card">
+                        <div class="post-image">
+                            <div class="image-placeholder">
+                                <span class="placeholder-icon">🌱</span>
+                                <span class="placeholder-text">Community Garden</span>
+                            </div>
+                            <div class="post-category category-stories">Success Story</div>
+                        </div>
+                        <div class="post-content">
+                            <h3 class="post-title">From Empty Lot to Community Garden: Detroit's Green Transformation</h3>
+                            <p class="post-excerpt">How our Detroit team transformed an abandoned lot into a thriving community garden that now feeds 50+ families.</p>
+                            <div class="post-meta">
+                                <span class="post-author">By Maya Patel</span>
+                                <span class="post-date">March 10, 2024</span>
+                                <span class="post-read-time">5 min read</span>
+                            </div>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- How-to Guide -->
+                <article class="blog-post" data-category="guides">
+                    <div class="glass-card post-card">
+                        <div class="post-image">
+                            <div class="image-placeholder">
+                                <span class="placeholder-icon">📋</span>
+                                <span class="placeholder-text">Planning Guide</span>
+                            </div>
+                            <div class="post-category category-guides">How-To Guide</div>
+                        </div>
+                        <div class="post-content">
+                            <h3 class="post-title">The Complete Guide to Organizing Your First Cleanup Event</h3>
+                            <p class="post-excerpt">Step-by-step instructions for planning, promoting, and executing a successful community cleanup from start to finish.</p>
+                            <div class="post-meta">
+                                <span class="post-author">By Jordan Williams</span>
+                                <span class="post-date">March 8, 2024</span>
+                                <span class="post-read-time">12 min read</span>
+                            </div>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- Environmental Insight -->
+                <article class="blog-post" data-category="insights">
+                    <div class="glass-card post-card">
+                        <div class="post-image">
+                            <div class="image-placeholder">
+                                <span class="placeholder-icon">🌊</span>
+                                <span class="placeholder-text">Ocean Plastic</span>
+                            </div>
+                            <div class="post-category category-insights">Environmental Insight</div>
+                        </div>
+                        <div class="post-content">
+                            <h3 class="post-title">The Hidden Journey of Ocean Plastic: Where Does It Really Come From?</h3>
+                            <p class="post-excerpt">Tracing the path of plastic waste from city streets to ocean gyres and what we can do to stop it.</p>
+                            <div class="post-meta">
+                                <span class="post-author">By Sarah Johnson</span>
+                                <span class="post-date">March 5, 2024</span>
+                                <span class="post-read-time">7 min read</span>
+                            </div>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- Update -->
+                <article class="blog-post" data-category="updates">
+                    <div class="glass-card post-card">
+                        <div class="post-image">
+                            <div class="image-placeholder">
+                                <span class="placeholder-icon">📱</span>
+                                <span class="placeholder-text">Mobile App</span>
+                            </div>
+                            <div class="post-category category-updates">Update</div>
+                        </div>
+                        <div class="post-content">
+                            <h3 class="post-title">Introducing the Cleanity Mobile App: Track Your Impact Anywhere</h3>
+                            <p class="post-excerpt">Our new mobile app is here! Log cleanup hours, find local events, and connect with other volunteers in your area.</p>
+                            <div class="post-meta">
+                                <span class="post-author">By Tech Team</span>
+                                <span class="post-date">March 1, 2024</span>
+                                <span class="post-read-time">4 min read</span>
+                            </div>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- Success Story -->
+                <article class="blog-post" data-category="stories">
+                    <div class="glass-card post-card">
+                        <div class="post-image">
+                            <div class="image-placeholder">
+                                <span class="placeholder-icon">🏫</span>
+                                <span class="placeholder-text">School Program</span>
+                            </div>
+                            <div class="post-category category-stories">Success Story</div>
+                        </div>
+                        <div class="post-content">
+                            <h3 class="post-title">How One High School Became Zero-Waste in Just One Semester</h3>
+                            <p class="post-excerpt">Lincoln High School's incredible journey to becoming completely zero-waste with the help of student volunteers.</p>
+                            <div class="post-meta">
+                                <span class="post-author">By Emma Clarke</span>
+                                <span class="post-date">February 28, 2024</span>
+                                <span class="post-read-time">6 min read</span>
+                            </div>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- Environmental Insight -->
+                <article class="blog-post" data-category="insights">
+                    <div class="glass-card post-card">
+                        <div class="post-image">
+                            <div class="image-placeholder">
+                                <span class="placeholder-icon">🌍</span>
+                                <span class="placeholder-text">Climate Action</span>
+                            </div>
+                            <div class="post-category category-insights">Environmental Insight</div>
+                        </div>
+                        <div class="post-content">
+                            <h3 class="post-title">Why Youth-Led Environmental Action is More Effective Than Traditional NGOs</h3>
+                            <p class="post-excerpt">Research shows young people are driving real environmental change. Here's why youth-led initiatives succeed where others don't.</p>
+                            <div class="post-meta">
+                                <span class="post-author">By Lucas Mueller</span>
+                                <span class="post-date">February 25, 2024</span>
+                                <span class="post-read-time">9 min read</span>
+                            </div>
+                        </div>
+                    </div>
+                </article>
+            </div>
+
+            <!-- Load More Button -->
+            <div class="load-more-container">
+                <button class="btn btn-secondary load-more-btn">
+                    <span>Load More Articles</span>
+                    <div class="btn-ripple"></div>
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Newsletter Signup -->
+    <section class="newsletter-section">
+        <div class="section-container">
+            <div class="glass-card newsletter-card">
+                <div class="newsletter-content">
+                    <h2 class="newsletter-title">Stay Updated</h2>
+                    <p class="newsletter-description">Get the latest stories, guides, and environmental insights delivered to your inbox every week.</p>
+                    <form class="newsletter-form">
+                        <div class="form-group">
+                            <input type="email" class="form-input" placeholder="Enter your email address" required>
+                            <div class="input-underline"></div>
+                        </div>
+                        <button type="submit" class="btn btn-primary">
+                            <span>Subscribe</span>
+                            <div class="btn-ripple"></div>
+                        </button>
+                    </form>
+                    <p class="newsletter-note">📧 Weekly updates • 🚫 No spam • ✉️ Unsubscribe anytime</p>
+                </div>
+                <div class="newsletter-visual">
+                    <div class="floating-elements">
+                        <div class="element element-1">📧</div>
+                        <div class="element element-2">📝</div>
+                        <div class="element element-3">🌱</div>
+                        <div class="element element-4">💚</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script src="script.js"></script>
+    <script src="blog.js"></script>
+</body>
+</html>

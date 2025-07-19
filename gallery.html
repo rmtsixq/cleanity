@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gallery - Cleanity</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="gallery.css">
+</head>
+<body>
+    <!-- Animated Background -->
+    <div class="background-animation">
+        <div class="floating-orb orb-1"></div>
+        <div class="floating-orb orb-2"></div>
+        <div class="floating-orb orb-3"></div>
+        <div class="floating-orb orb-4"></div>
+        <div class="floating-orb orb-5"></div>
+    </div>
+
+    <!-- Header -->
+    <header class="glass-header">
+        <nav class="nav-container">
+            <div class="logo-container">
+                <div class="logo-animation">
+                    <span class="logo-text">Cleanity</span>
+                    <div class="logo-underline"></div>
+                </div>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="index.html" class="nav-link">Home</a></li>
+                <li><a href="gallery.html" class="nav-link active">Gallery</a></li>
+                <li><a href="team.html" class="nav-link">Our Team</a></li>
+                <li><a href="contact.html" class="nav-link">Contact</a></li>
+                <li><a href="join.html" class="nav-link">Join Us</a></li>
+                <li><a href="blog.html" class="nav-link">Blog</a></li>
+            </ul>
+            <div class="nav-toggle">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Gallery Hero Section -->
+    <section class="gallery-hero">
+        <div class="hero-container">
+            <div class="hero-content">
+                <div class="hero-badge">
+                    <span class="badge-text">📸 Our Impact Gallery</span>
+                </div>
+                <h1 class="hero-title">
+                    <span class="title-line">See The Change</span>
+                    <span class="title-line title-accent">We're Making</span>
+                </h1>
+                <p class="hero-description">
+                    From before-and-after transformations to community moments, witness the real impact of our youth-led movement around the world.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Gallery Filters -->
+    <section class="gallery-filters">
+        <div class="section-container">
+            <div class="filter-tabs">
+                <button class="filter-btn active" data-filter="all">
+                    <span>All Projects</span>
+                    <div class="btn-ripple"></div>
+                </button>
+                <button class="filter-btn" data-filter="cleanups">
+                    <span>🧹 Cleanups</span>
+                    <div class="btn-ripple"></div>
+                </button>
+                <button class="filter-btn" data-filter="workshops">
+                    <span>🎓 Workshops</span>
+                    <div class="btn-ripple"></div>
+                </button>
+                <button class="filter-btn" data-filter="community">
+                    <span>🤝 Community</span>
+                    <div class="btn-ripple"></div>
+                </button>
+                <button class="filter-btn" data-filter="events">
+                    <span>🎉 Events</span>
+                    <div class="btn-ripple"></div>
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Gallery Grid -->
+    <section class="gallery-grid-section">
+        <div class="section-container">
+            <div class="gallery-grid">
+                <!-- Cleanup Photos -->
+                <div class="gallery-item cleanup-item" data-category="cleanups">
+                    <div class="glass-card gallery-card">
+                        <div class="card-image">
+                            <div class="image-placeholder">
+                                <span class="placeholder-icon">🏖️</span>
+                                <span class="placeholder-text">Beach Cleanup</span>
+                            </div>
+                            <div class="image-overlay">
+                                <button class="view-btn">
+                                    <span>View Details</span>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="card-content">
+                            <h3 class="card-title">Pacific Beach Restoration</h3>
+                            <p class="card-description">200+ volunteers collected 5 tons of debris</p>
+                            <div class="card-stats">
+                                <span class="stat">📍 San Diego, CA</span>
+                                <span class="stat">📅 March 2024</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="gallery-item cleanup-item" data-category="cleanups">
+                    <div class="glass-card gallery-card">
+                        <div class="card-image">
+                            <div class="image-placeholder">
+                                <span class="placeholder-icon">🏞️</span>
+                                <span class="placeholder-text">Park Cleanup</span>
+                            </div>
+                            <div class="image-overlay">
+                                <button class="view-btn">
+                                    <span>View Details</span>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="card-content">
+                            <h3 class="card-title">Central Park Revival</h3>
+                            <p class="card-description">Community effort to restore local green spaces</p>
+                            <div class="card-stats">
+                                <span class="stat">📍 New York, NY</span>
+                                <span class="stat">📅 February 2024</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Workshop Photos -->
+                <div class="gallery-item workshop-item" data-category="workshops">
+                    <div class="glass-card gallery-card">
+                        <div class="card-image">
+                            <div class="image-placeholder">
+                                <span class="placeholder-icon">♻️</span>
+                                <span class="placeholder-text">Recycling Workshop</span>
+                            </div>
+                            <div class="image-overlay">
+                                <button class="view-btn">
+                                    <span>View Details</span>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="card-content">
+                            <h3 class="card-title">Sustainability 101</h3>
+                            <p class="card-description">Teaching students about waste reduction</p>
+                            <div class="card-stats">
+                                <span class="stat">📍 Austin, TX</span>
+                                <span class="stat">📅 January 2024</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Community Photos -->
+                <div class="gallery-item community-item" data-category="community">
+                    <div class="glass-card gallery-card">
+                        <div class="card-image">
+                            <div class="image-placeholder">
+                                <span class="placeholder-icon">🌱</span>
+                                <span class="placeholder-text">Tree Planting</span>
+                            </div>
+                            <div class="image-overlay">
+                                <button class="view-btn">
+                                    <span>View Details</span>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="card-content">
+                            <h3 class="card-title">Community Garden Project</h3>
+                            <p class="card-description">Planting hope for future generations</p>
+                            <div class="card-stats">
+                                <span class="stat">📍 Portland, OR</span>
+                                <span class="stat">📅 April 2024</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Event Photos -->
+                <div class="gallery-item event-item" data-category="events">
+                    <div class="glass-card gallery-card">
+                        <div class="card-image">
+                            <div class="image-placeholder">
+                                <span class="placeholder-icon">🎯</span>
+                                <span class="placeholder-text">Launch Event</span>
+                            </div>
+                            <div class="image-overlay">
+                                <button class="view-btn">
+                                    <span>View Details</span>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="card-content">
+                            <h3 class="card-title">Global Cleanity Launch</h3>
+                            <p class="card-description">Where it all began - our first global event</p>
+                            <div class="card-stats">
+                                <span class="stat">📍 Virtual Event</span>
+                                <span class="stat">📅 December 2023</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="gallery-item cleanup-item" data-category="cleanups">
+                    <div class="glass-card gallery-card">
+                        <div class="card-image">
+                            <div class="image-placeholder">
+                                <span class="placeholder-icon">🏙️</span>
+                                <span class="placeholder-text">Urban Cleanup</span>
+                            </div>
+                            <div class="image-overlay">
+                                <button class="view-btn">
+                                    <span>View Details</span>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="card-content">
+                            <h3 class="card-title">Downtown Street Cleanup</h3>
+                            <p class="card-description">Making city centers shine again</p>
+                            <div class="card-stats">
+                                <span class="stat">📍 Chicago, IL</span>
+                                <span class="stat">📅 March 2024</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Load More Button -->
+            <div class="load-more-container">
+                <button class="btn btn-secondary load-more-btn">
+                    <span>Load More Projects</span>
+                    <div class="btn-ripple"></div>
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Impact Stats -->
+    <section class="gallery-stats">
+        <div class="section-container">
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="glass-card">
+                        <div class="stat-icon">📸</div>
+                        <div class="stat-number">500+</div>
+                        <div class="stat-label">Photos Captured</div>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="glass-card">
+                        <div class="stat-icon">🌍</div>
+                        <div class="stat-number">50+</div>
+                        <div class="stat-label">Cities Documented</div>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="glass-card">
+                        <div class="stat-icon">⏱️</div>
+                        <div class="stat-number">10K+</div>
+                        <div class="stat-label">Hours Recorded</div>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="glass-card">
+                        <div class="stat-icon">💚</div>
+                        <div class="stat-number">1M+</div>
+                        <div class="stat-label">Lives Impacted</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script src="script.js"></script>
+    <script src="gallery.js"></script>
+</body>
+</html>

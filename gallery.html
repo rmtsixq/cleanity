@@ -93,157 +93,20 @@
     <section class="gallery-grid-section">
         <div class="section-container">
             <div class="gallery-grid">
-                <!-- Cleanup Photos -->
-                <div class="gallery-item cleanup-item" data-category="cleanups">
-                    <div class="glass-card gallery-card">
-                        <div class="card-image">
-                            <div class="image-placeholder">
-                                <span class="placeholder-icon">🏖️</span>
-                                <span class="placeholder-text">Beach Cleanup</span>
-                            </div>
-                            <div class="image-overlay">
-                                <button class="view-btn">
-                                    <span>View Details</span>
-                                </button>
-                            </div>
-                        </div>
-                        <div class="card-content">
-                            <h3 class="card-title">Pacific Beach Restoration</h3>
-                            <p class="card-description">200+ volunteers collected 5 tons of debris</p>
-                            <div class="card-stats">
-                                <span class="stat">📍 San Diego, CA</span>
-                                <span class="stat">📅 March 2024</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="gallery-item cleanup-item" data-category="cleanups">
-                    <div class="glass-card gallery-card">
-                        <div class="card-image">
-                            <div class="image-placeholder">
-                                <span class="placeholder-icon">🏞️</span>
-                                <span class="placeholder-text">Park Cleanup</span>
-                            </div>
-                            <div class="image-overlay">
-                                <button class="view-btn">
-                                    <span>View Details</span>
-                                </button>
-                            </div>
-                        </div>
-                        <div class="card-content">
-                            <h3 class="card-title">Central Park Revival</h3>
-                            <p class="card-description">Community effort to restore local green spaces</p>
-                            <div class="card-stats">
-                                <span class="stat">📍 New York, NY</span>
-                                <span class="stat">📅 February 2024</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Workshop Photos -->
-                <div class="gallery-item workshop-item" data-category="workshops">
-                    <div class="glass-card gallery-card">
-                        <div class="card-image">
-                            <div class="image-placeholder">
-                                <span class="placeholder-icon">♻️</span>
-                                <span class="placeholder-text">Recycling Workshop</span>
-                            </div>
-                            <div class="image-overlay">
-                                <button class="view-btn">
-                                    <span>View Details</span>
-                                </button>
-                            </div>
-                        </div>
-                        <div class="card-content">
-                            <h3 class="card-title">Sustainability 101</h3>
-                            <p class="card-description">Teaching students about waste reduction</p>
-                            <div class="card-stats">
-                                <span class="stat">📍 Austin, TX</span>
-                                <span class="stat">📅 January 2024</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Community Photos -->
-                <div class="gallery-item community-item" data-category="community">
-                    <div class="glass-card gallery-card">
-                        <div class="card-image">
-                            <div class="image-placeholder">
-                                <span class="placeholder-icon">🌱</span>
-                                <span class="placeholder-text">Tree Planting</span>
-                            </div>
-                            <div class="image-overlay">
-                                <button class="view-btn">
-                                    <span>View Details</span>
-                                </button>
-                            </div>
-                        </div>
-                        <div class="card-content">
-                            <h3 class="card-title">Community Garden Project</h3>
-                            <p class="card-description">Planting hope for future generations</p>
-                            <div class="card-stats">
-                                <span class="stat">📍 Portland, OR</span>
-                                <span class="stat">📅 April 2024</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Event Photos -->
-                <div class="gallery-item event-item" data-category="events">
-                    <div class="glass-card gallery-card">
-                        <div class="card-image">
-                            <div class="image-placeholder">
-                                <span class="placeholder-icon">🎯</span>
-                                <span class="placeholder-text">Launch Event</span>
-                            </div>
-                            <div class="image-overlay">
-                                <button class="view-btn">
-                                    <span>View Details</span>
-                                </button>
-                            </div>
-                        </div>
-                        <div class="card-content">
-                            <h3 class="card-title">Global Cleanity Launch</h3>
-                            <p class="card-description">Where it all began - our first global event</p>
-                            <div class="card-stats">
-                                <span class="stat">📍 Virtual Event</span>
-                                <span class="stat">📅 December 2023</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="gallery-item cleanup-item" data-category="cleanups">
-                    <div class="glass-card gallery-card">
-                        <div class="card-image">
-                            <div class="image-placeholder">
-                                <span class="placeholder-icon">🏙️</span>
-                                <span class="placeholder-text">Urban Cleanup</span>
-                            </div>
-                            <div class="image-overlay">
-                                <button class="view-btn">
-                                    <span>View Details</span>
-                                </button>
-                            </div>
-                        </div>
-                        <div class="card-content">
-                            <h3 class="card-title">Downtown Street Cleanup</h3>
-                            <p class="card-description">Making city centers shine again</p>
-                            <div class="card-stats">
-                                <span class="stat">📍 Chicago, IL</span>
-                                <span class="stat">📅 March 2024</span>
-                            </div>
+                <!-- Gallery items will be dynamically added here -->
+                <div id="empty-gallery-message" class="empty-gallery">
+                    <div class="glass-card">
+                        <div class="empty-content">
+                            <span class="empty-icon">📸</span>
+                            <h3>Henüz fotoğraf eklenmemiş</h3>
+                            <p>Aşağıdaki "Photos Captured" kartına 3 kez tıklayarak ilk fotoğrafınızı ekleyin!</p>
                         </div>
                     </div>
                 </div>
             </div>
 
             <!-- Load More Button -->
-            <div class="load-more-container">
+            <div class="load-more-container" style="display: none;">
                 <button class="btn btn-secondary load-more-btn">
                     <span>Load More Projects</span>
                     <div class="btn-ripple"></div>
@@ -252,15 +115,81 @@
         </div>
     </section>
 
+    <!-- Photo Upload Form (Hidden by default) -->
+    <section id="photo-upload-section" class="photo-upload-form" style="display: none;">
+        <div class="section-container">
+            <div class="form-container">
+                <div class="glass-card">
+                    <div class="form-header">
+                        <h3>🌟 Yeni Fotoğraf Ekle</h3>
+                        <button id="close-form" class="close-btn">&times;</button>
+                    </div>
+                    <form id="photo-upload-form">
+                        <div class="form-group">
+                            <label for="photo-file">Fotoğraf Seç</label>
+                            <input type="file" id="photo-file" accept="image/*" required>
+                            <div class="file-preview" id="file-preview"></div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="photo-title">Başlık</label>
+                            <input type="text" id="photo-title" placeholder="Örn: Sahil Temizliği" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="photo-description">Açıklama</label>
+                            <textarea id="photo-description" placeholder="Bu etkinlik hakkında kısaca bilgi verin..." required></textarea>
+                        </div>
+                        
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="photo-date">Tarih</label>
+                                <input type="date" id="photo-date" required>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="photo-location">Konum</label>
+                                <input type="text" id="photo-location" placeholder="Örn: İstanbul, Türkiye" required>
+                            </div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="photo-category">Kategori</label>
+                            <select id="photo-category" required>
+                                <option value="">Kategori seçin</option>
+                                <option value="cleanups">🧹 Temizlik</option>
+                                <option value="workshops">🎓 Workshop</option>
+                                <option value="community">🤝 Topluluk</option>
+                                <option value="events">🎉 Etkinlik</option>
+                            </select>
+                        </div>
+                        
+                        <div class="form-actions">
+                            <button type="button" id="cancel-form" class="btn btn-secondary">İptal</button>
+                            <button type="submit" class="btn btn-primary">
+                                <span>Fotoğraf Ekle</span>
+                                <div class="btn-ripple"></div>
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <!-- Impact Stats -->
     <section class="gallery-stats">
         <div class="section-container">
             <div class="stats-grid">
-                <div class="stat-card">
-                    <div class="glass-card">
+                <div class="stat-card" id="photos-captured-card">
+                    <div class="glass-card clickable-card">
                         <div class="stat-icon">📸</div>
-                        <div class="stat-number">500+</div>
+                        <div class="stat-number" id="photos-count">0</div>
                         <div class="stat-label">Photos Captured</div>
+                        <div class="click-indicator" id="click-indicator">
+                            <span class="click-counter">0/3</span>
+                            <div class="click-hint">3 kez tıklayın!</div>
+                        </div>
                     </div>
                 </div>
                 <div class="stat-card">

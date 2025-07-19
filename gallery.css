@@ -16,6 +16,247 @@
     animation: slideInUp 1s ease-out;
 }
 
+/* Empty Gallery State */
+.empty-gallery {
+    grid-column: 1 / -1;
+    display: flex;
+    justify-content: center;
+}
+
+.empty-gallery .glass-card {
+    padding: 4rem 2rem;
+    text-align: center;
+    max-width: 500px;
+}
+
+.empty-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+}
+
+.empty-icon {
+    font-size: 4rem;
+    opacity: 0.7;
+}
+
+.empty-content h3 {
+    color: var(--dark-text);
+    font-size: 1.5rem;
+    margin: 0;
+}
+
+.empty-content p {
+    color: var(--dark-text-secondary);
+    margin: 0;
+    line-height: 1.6;
+}
+
+/* Photo Upload Form */
+.photo-upload-form {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.8);
+    z-index: 1000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem;
+    backdrop-filter: blur(10px);
+}
+
+.form-container {
+    width: 100%;
+    max-width: 600px;
+    max-height: 90vh;
+    overflow-y: auto;
+}
+
+.form-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 2rem;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid var(--glass-border);
+}
+
+.form-header h3 {
+    color: var(--dark-text);
+    margin: 0;
+    font-size: 1.5rem;
+}
+
+.close-btn {
+    background: none;
+    border: none;
+    font-size: 2rem;
+    color: var(--dark-text-secondary);
+    cursor: pointer;
+    padding: 0;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    transition: all 0.3s ease;
+}
+
+.close-btn:hover {
+    background: var(--surface-green);
+    color: var(--primary-green);
+}
+
+.form-group {
+    margin-bottom: 1.5rem;
+}
+
+.form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+}
+
+.form-group label {
+    display: block;
+    color: var(--dark-text);
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+}
+
+.form-group input,
+.form-group select,
+.form-group textarea {
+    width: 100%;
+    padding: 1rem;
+    border: 1px solid var(--glass-border);
+    border-radius: 10px;
+    background: var(--surface-green);
+    color: var(--dark-text);
+    font-family: inherit;
+    transition: all 0.3s ease;
+}
+
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+    outline: none;
+    border-color: var(--primary-green);
+    box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.1);
+}
+
+.form-group textarea {
+    resize: vertical;
+    min-height: 100px;
+}
+
+.file-preview {
+    margin-top: 1rem;
+    padding: 1rem;
+    border: 2px dashed var(--glass-border);
+    border-radius: 10px;
+    text-align: center;
+    transition: all 0.3s ease;
+}
+
+.file-preview.has-file {
+    border-color: var(--primary-green);
+    background: var(--surface-green);
+}
+
+.file-preview img {
+    max-width: 100%;
+    max-height: 200px;
+    border-radius: 10px;
+    margin-bottom: 1rem;
+}
+
+.file-preview .file-info {
+    color: var(--dark-text-secondary);
+    font-size: 0.9rem;
+}
+
+.form-actions {
+    display: flex;
+    gap: 1rem;
+    justify-content: flex-end;
+    margin-top: 2rem;
+    padding-top: 1rem;
+    border-top: 1px solid var(--glass-border);
+}
+
+.form-actions .btn {
+    min-width: 120px;
+}
+
+/* Click Indicator for Photos Captured Card */
+.clickable-card {
+    cursor: pointer;
+    position: relative;
+    transition: all 0.3s ease;
+}
+
+.clickable-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 20px 40px var(--glass-shadow);
+}
+
+.click-indicator {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    background: var(--primary-green);
+    color: white;
+    border-radius: 20px;
+    padding: 0.3rem 0.8rem;
+    font-size: 0.8rem;
+    font-weight: 600;
+    opacity: 0;
+    transform: scale(0.8);
+    transition: all 0.3s ease;
+}
+
+.clickable-card:hover .click-indicator {
+    opacity: 1;
+    transform: scale(1);
+}
+
+.click-counter {
+    display: block;
+    text-align: center;
+}
+
+.click-hint {
+    font-size: 0.7rem;
+    opacity: 0.8;
+    margin-top: 0.2rem;
+}
+
+.clickable-card.clicked {
+    animation: clickPulse 0.3s ease;
+}
+
+@keyframes clickPulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.05); }
+    100% { transform: scale(1); }
+}
+
+.stat-card.ready-to-open .clickable-card {
+    background: linear-gradient(135deg, var(--primary-green) 0%, #10b981 100%);
+    color: white;
+}
+
+.stat-card.ready-to-open .click-indicator {
+    background: white;
+    color: var(--primary-green);
+}
+
 /* Gallery Filters */
 .gallery-filters {
     padding: 2rem 0;
@@ -172,6 +413,56 @@
     box-shadow: 0 10px 30px rgba(255, 255, 255, 0.3);
 }
 
+.delete-btn {
+    background: rgba(239, 68, 68, 0.9);
+    color: white;
+    border: none;
+    padding: 0.8rem;
+    border-radius: 50%;
+    font-size: 1rem;
+    cursor: pointer;
+    margin-left: 0.5rem;
+    transform: translateY(20px);
+    transition: all 0.3s ease;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.gallery-card:hover .delete-btn {
+    transform: translateY(0);
+}
+
+.delete-btn:hover {
+    transform: scale(1.1);
+    background: rgba(220, 38, 38, 1);
+}
+
+/* Success Message Animations */
+@keyframes slideInRight {
+    from {
+        transform: translateX(100%);
+        opacity: 0;
+    }
+    to {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+@keyframes slideOutRight {
+    from {
+        transform: translateX(0);
+        opacity: 1;
+    }
+    to {
+        transform: translateX(100%);
+        opacity: 0;
+    }
+}
+
 .card-content {
     padding: 0 0.5rem;
 }
@@ -320,5 +611,44 @@
     
     .stat-number {
         font-size: 2rem;
+    }
+    
+    /* Form responsive */
+    .photo-upload-form {
+        padding: 1rem;
+    }
+    
+    .form-container {
+        max-height: 95vh;
+    }
+    
+    .form-row {
+        grid-template-columns: 1fr;
+        gap: 0;
+    }
+    
+    .form-actions {
+        flex-direction: column;
+    }
+    
+    .form-actions .btn {
+        width: 100%;
+    }
+    
+    .empty-gallery .glass-card {
+        padding: 2rem 1rem;
+    }
+    
+    .empty-icon {
+        font-size: 3rem;
+    }
+    
+    .click-indicator {
+        position: relative;
+        top: auto;
+        right: auto;
+        margin-top: 1rem;
+        opacity: 1;
+        transform: scale(1);
     }
 }

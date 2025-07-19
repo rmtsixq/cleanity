@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us - Cleanity</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="contact.css">
+</head>
+<body>
+    <!-- Animated Background -->
+    <div class="background-animation">
+        <div class="floating-orb orb-1"></div>
+        <div class="floating-orb orb-2"></div>
+        <div class="floating-orb orb-3"></div>
+        <div class="floating-orb orb-4"></div>
+        <div class="floating-orb orb-5"></div>
+    </div>
+
+    <!-- Header -->
+    <header class="glass-header">
+        <nav class="nav-container">
+            <div class="logo-container">
+                <div class="logo-animation">
+                    <span class="logo-text">Cleanity</span>
+                    <div class="logo-underline"></div>
+                </div>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="index.html" class="nav-link">Home</a></li>
+                <li><a href="gallery.html" class="nav-link">Gallery</a></li>
+                <li><a href="team.html" class="nav-link">Our Team</a></li>
+                <li><a href="contact.html" class="nav-link active">Contact</a></li>
+                <li><a href="join.html" class="nav-link">Join Us</a></li>
+                <li><a href="blog.html" class="nav-link">Blog</a></li>
+            </ul>
+            <div class="nav-toggle">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Contact Hero Section -->
+    <section class="contact-hero">
+        <div class="hero-container">
+            <div class="hero-content">
+                <div class="hero-badge">
+                    <span class="badge-text">💬 Let's Connect</span>
+                </div>
+                <h1 class="hero-title">
+                    <span class="title-line">Ready To Make</span>
+                    <span class="title-line title-accent">A Difference?</span>
+                </h1>
+                <p class="hero-description">
+                    Whether you want to organize a cleanup, collaborate on a project, or just say hello, we'd love to hear from you.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Form Section -->
+    <section class="contact-form-section">
+        <div class="section-container">
+            <div class="contact-grid">
+                <div class="contact-form-container">
+                    <div class="glass-card form-card">
+                        <h2 class="form-title">Send Us a Message</h2>
+                        <form class="contact-form" id="contactForm">
+                            <div class="form-group">
+                                <label for="name" class="form-label">Full Name</label>
+                                <input type="text" id="name" name="name" class="form-input" required>
+                                <div class="input-underline"></div>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="email" class="form-label">Email Address</label>
+                                <input type="email" id="email" name="email" class="form-input" required>
+                                <div class="input-underline"></div>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="phone" class="form-label">Phone Number (Optional)</label>
+                                <input type="tel" id="phone" name="phone" class="form-input">
+                                <div class="input-underline"></div>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="subject" class="form-label">Subject</label>
+                                <select id="subject" name="subject" class="form-select" required>
+                                    <option value="">Choose a topic...</option>
+                                    <option value="cleanup">Organize a Cleanup</option>
+                                    <option value="partnership">Partnership Opportunity</option>
+                                    <option value="volunteer">Become a Volunteer</option>
+                                    <option value="media">Media Inquiry</option>
+                                    <option value="technical">Technical Support</option>
+                                    <option value="general">General Question</option>
+                                </select>
+                                <div class="input-underline"></div>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="message" class="form-label">Message</label>
+                                <textarea id="message" name="message" class="form-textarea" rows="5" required></textarea>
+                                <div class="input-underline"></div>
+                            </div>
+                            
+                            <div class="form-group checkbox-group">
+                                <label class="checkbox-label">
+                                    <input type="checkbox" id="newsletter" name="newsletter" class="form-checkbox">
+                                    <span class="checkbox-custom"></span>
+                                    <span class="checkbox-text">Subscribe to our newsletter for updates</span>
+                                </label>
+                            </div>
+                            
+                            <button type="submit" class="btn btn-primary form-submit">
+                                <span>Send Message</span>
+                                <div class="btn-ripple"></div>
+                            </button>
+                        </form>
+                    </div>
+                </div>
+                
+                <div class="contact-info-container">
+                    <div class="glass-card info-card">
+                        <h3 class="info-title">Get In Touch</h3>
+                        <div class="contact-methods">
+                            <div class="contact-method">
+                                <div class="method-icon">📧</div>
+                                <div class="method-content">
+                                    <h4 class="method-title">Email Us</h4>
+                                    <p class="method-description">hello@cleanity.org</p>
+                                    <p class="method-description">partnerships@cleanity.org</p>
+                                </div>
+                            </div>
+                            
+                            <div class="contact-method">
+                                <div class="method-icon">🌐</div>
+                                <div class="method-content">
+                                    <h4 class="method-title">Social Media</h4>
+                                    <div class="social-links">
+                                        <a href="#" class="social-link">Instagram</a>
+                                        <a href="#" class="social-link">Twitter</a>
+                                        <a href="#" class="social-link">LinkedIn</a>
+                                        <a href="#" class="social-link">TikTok</a>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="contact-method">
+                                <div class="method-icon">⏰</div>
+                                <div class="method-content">
+                                    <h4 class="method-title">Response Time</h4>
+                                    <p class="method-description">We typically respond within 24 hours</p>
+                                    <p class="method-description">Urgent matters: within 4 hours</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="glass-card location-card">
+                        <h3 class="info-title">Our Locations</h3>
+                        <div class="locations">
+                            <div class="location-item">
+                                <div class="location-flag">🇺🇸</div>
+                                <div class="location-info">
+                                    <h4 class="location-name">North America HQ</h4>
+                                    <p class="location-address">San Francisco, CA</p>
+                                </div>
+                            </div>
+                            
+                            <div class="location-item">
+                                <div class="location-flag">🇮🇳</div>
+                                <div class="location-info">
+                                    <h4 class="location-name">Asia Operations</h4>
+                                    <p class="location-address">Mumbai, India</p>
+                                </div>
+                            </div>
+                            
+                            <div class="location-item">
+                                <div class="location-flag">🇨🇦</div>
+                                <div class="location-info">
+                                    <h4 class="location-name">Tech Hub</h4>
+                                    <p class="location-address">Toronto, Canada</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section class="faq-section">
+        <div class="section-container">
+            <div class="section-header">
+                <h2 class="section-title">Frequently Asked Questions</h2>
+                <p class="section-subtitle">Quick answers to common questions</p>
+            </div>
+            
+            <div class="faq-grid">
+                <div class="faq-item">
+                    <div class="glass-card faq-card">
+                        <div class="faq-question">
+                            <h3 class="question-text">How can I organize a cleanup in my city?</h3>
+                            <div class="question-icon">+</div>
+                        </div>
+                        <div class="faq-answer">
+                            <p>Contact us through the form above with "Organize a Cleanup" as your subject. We'll connect you with our regional coordinator who will provide you with all the resources, training, and support you need to organize a successful cleanup event.</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="glass-card faq-card">
+                        <div class="faq-question">
+                            <h3 class="question-text">Is there an age requirement to join Cleanity?</h3>
+                            <div class="question-icon">+</div>
+                        </div>
+                        <div class="faq-answer">
+                            <p>While Cleanity is youth-led, we welcome supporters of all ages! For leadership positions, we typically look for individuals aged 16-30, but volunteers can participate at any age with appropriate supervision for minors.</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="glass-card faq-card">
+                        <div class="faq-question">
+                            <h3 class="question-text">Do you provide cleanup supplies and equipment?</h3>
+                            <div class="question-icon">+</div>
+                        </div>
+                        <div class="faq-answer">
+                            <p>Yes! We provide starter kits for new cleanup organizers including gloves, trash bags, safety vests, and data collection sheets. For larger events, we can connect you with local sponsors and partners for additional supplies.</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="glass-card faq-card">
+                        <div class="faq-question">
+                            <h3 class="question-text">How do you track the impact of cleanup events?</h3>
+                            <div class="question-icon">+</div>
+                        </div>
+                        <div class="faq-answer">
+                            <p>We use our custom mobile app and data collection system to track metrics like pounds of trash collected, number of volunteers, types of waste found, and areas cleaned. This data helps us measure our global impact and improve future events.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script src="script.js"></script>
+    <script src="contact.js"></script>
+</body>
+</html>

@@ -551,10 +551,21 @@ function setupKeyboardShortcut() {
         // Check if "rumet" was typed
         if (typedKeys.includes('rumet')) {
             typedKeys = ''; // Reset
-            openDataManagementModal();
             
             // Show a fun message
             console.log('🎉 Rumet Asan detected! Opening data management panel...');
+            
+            // Try to open modal and handle any errors
+            try {
+                openDataManagementModal();
+            } catch (error) {
+                console.error('Error opening modal:', error);
+                // Fallback: create modal first, then open
+                createDataManagementModal();
+                setTimeout(() => {
+                    openDataManagementModal();
+                }, 100);
+            }
         }
         
         // Keep only last 10 characters to prevent memory issues
@@ -565,20 +576,42 @@ function setupKeyboardShortcut() {
 }
 
 function openDataManagementModal() {
+    console.log('Attempting to open data management modal...');
+    
     // Create modal if it doesn't exist
     if (!document.getElementById('dataManagementModal')) {
+        console.log('Modal does not exist, creating...');
         createDataManagementModal();
+        
+        // Wait a bit for DOM to update
+        setTimeout(() => {
+            showModal();
+        }, 100);
+    } else {
+        console.log('Modal exists, showing...');
+        showModal();
     }
     
-    const modal = document.getElementById('dataManagementModal');
-    modal.classList.add('active');
-    document.body.style.overflow = 'hidden';
-    
-    // Populate current values
-    populateDataManagementForm();
+    function showModal() {
+        const modal = document.getElementById('dataManagementModal');
+        if (modal) {
+            console.log('Modal found, activating...');
+            modal.classList.add('active');
+            document.body.style.overflow = 'hidden';
+            
+            // Populate current values
+            populateDataManagementForm();
+            
+            console.log('Modal should be visible now!');
+        } else {
+            console.error('Modal element not found after creation!');
+        }
+    }
 }
 
 function createDataManagementModal() {
+    console.log('Creating data management modal...');
+    
     const modalHTML = `
         <div class="form-modal" id="dataManagementModal">
             <div class="modal-overlay"></div>
@@ -685,6 +718,8 @@ function createDataManagementModal() {
     
     document.body.insertAdjacentHTML('beforeend', modalHTML);
     
+    console.log('Modal HTML added to DOM');
+    
     // Add event listeners
     const modal = document.getElementById('dataManagementModal');
     const overlay = modal.querySelector('.modal-overlay');
@@ -708,21 +743,33 @@ function createDataManagementModal() {
 }
 
 function populateDataManagementForm() {
-    const form = document.getElementById('dataManagementForm');
-    if (!form) return;
+    console.log('Populating data management form...');
     
+    const form = document.getElementById('dataManagementForm');
+    if (!form) {
+        console.error('Form not found!');
+        return;
+    }
+    
+    console.log('Form found, populating with data...');
     const data = window.CleanityData.stats;
     
-    form.members.value = data.members.value;
-    form.citiesActive.value = data.citiesActive.value;
-    form.eventsOrganized.value = data.eventsOrganized.value;
-    form.trashCollected.value = data.trashCollected.value;
-    form.studentsEducated.value = data.studentsEducated.value;
-    form.communityPartners.value = data.communityPartners.value;
-    form.citiesDocumented.value = data.citiesDocumented.value;
-    form.photosCaptured.value = data.photosCaptured.value;
-    form.hoursRecorded.value = data.hoursRecorded.value;
-    form.livesImpacted.value = data.livesImpacted.value;
+    try {
+        form.members.value = data.members.value;
+        form.citiesActive.value = data.citiesActive.value;
+        form.eventsOrganized.value = data.eventsOrganized.value;
+        form.trashCollected.value = data.trashCollected.value;
+        form.studentsEducated.value = data.studentsEducated.value;
+        form.communityPartners.value = data.communityPartners.value;
+        form.citiesDocumented.value = data.citiesDocumented.value;
+        form.photosCaptured.value = data.photosCaptured.value;
+        form.hoursRecorded.value = data.hoursRecorded.value;
+        form.livesImpacted.value = data.livesImpacted.value;
+        
+        console.log('Form populated successfully!');
+    } catch (error) {
+        console.error('Error populating form:', error);
+    }
 }
 
 function saveDataManagementForm() {

@@ -202,19 +202,53 @@ document.addEventListener('DOMContentLoaded', function() {
             // Show loading state
             submitButton.querySelector('span').textContent = 'Submitting...';
             submitButton.disabled = true;
-            
-            // Simulate API call
-            setTimeout(() => {
-                // Show success and close modal
-                showApplicationSuccess();
-                closeModal();
-                
-                // Reset button
+
+            // --- TELEGRAM ENTEGRASYONU ---
+            // Telegram bot token ve chat ID
+            const telegramBotToken = '8278317114:AAEjtW5h4hMrfjEgngb1NSpTQ4q4npm4ZS8';
+            const telegramChatId = '7302813741';
+
+            // Mesajı derle
+            let message = `Yeni Cleanity Başvurusu!%0A`;
+            message += `Ad: ${data.firstName || ''} ${data.lastName || ''}%0A`;
+            message += `Email: ${data.email || ''}%0A`;
+            message += `Telefon: ${data.phone || ''}%0A`;
+            message += `Yaş: ${data.age || ''}%0A`;
+            message += `Konum: ${data.location || ''}%0A`;
+            message += `Deneyim: ${data.experience || ''}%0A`;
+            message += `Motivasyon: ${data.motivation || ''}%0A`;
+            message += `Haftalık Zaman: ${data.availability || ''}%0A`;
+            // Rol bazlı ek alanlar
+            Object.keys(data).forEach(key => {
+                if (!["firstName","lastName","email","phone","age","location","experience","motivation","availability"].includes(key)) {
+                    message += `${key}: ${data[key]}%0A`;
+                }
+            });
+
+            // Telegram API'ye POST isteği
+            fetch(`https://api.telegram.org/bot${telegramBotToken}/sendMessage`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/x-www-form-urlencoded',
+                },
+                body: `chat_id=${telegramChatId}&text=${message}`
+            })
+            .then(response => response.json())
+            .then(result => {
+                if (result.ok) {
+                    showApplicationSuccess();
+                    closeModal();
+                } else {
+                    showFormErrors(["Başvuru Telegram'a iletilemedi. Lütfen tekrar deneyin."]);
+                }
                 submitButton.querySelector('span').textContent = originalText;
                 submitButton.disabled = false;
-                
-                console.log('Application submitted:', data);
-            }, 2000);
+            })
+            .catch(error => {
+                showFormErrors(["Bir hata oluştu. Lütfen tekrar deneyin."]);
+                submitButton.querySelector('span').textContent = originalText;
+                submitButton.disabled = false;
+            });
         }
     }
     

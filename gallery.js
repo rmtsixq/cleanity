@@ -1,70 +1,216 @@
-// Gallery Page JavaScript
+// Gallery Page JavaScript - New Implementation
 document.addEventListener('DOMContentLoaded', function() {
     
-    // Gallery Filter Functionality
-    const filterBtns = document.querySelectorAll('.filter-btn');
-    const galleryItems = document.querySelectorAll('.gallery-item');
+    // Password for admin access
+    const ADMIN_PASSWORD = 'sayınmehmetruzgarbeyhoca';
     
-    filterBtns.forEach(btn => {
-        btn.addEventListener('click', function() {
-            const filter = this.getAttribute('data-filter');
-            
-            // Update active button
-            filterBtns.forEach(b => b.classList.remove('active'));
-            this.classList.add('active');
-            
-            // Filter gallery items
-            galleryItems.forEach(item => {
-                const category = item.getAttribute('data-category');
-                
-                if (filter === 'all' || category === filter) {
-                    item.style.display = 'block';
-                    item.classList.remove('filtering-out');
-                    item.classList.add('filtering-in');
-                } else {
-                    item.classList.add('filtering-out');
-                    setTimeout(() => {
-                        item.style.display = 'none';
-                        item.classList.remove('filtering-out');
-                    }, 300);
-                }
-            });
-        });
+    // DOM Elements
+    const addNewBtn = document.getElementById('addNewBtn');
+    const passwordModal = document.getElementById('passwordModal');
+    const addCardModal = document.getElementById('addCardModal');
+    const closePasswordModal = document.getElementById('closePasswordModal');
+    const closeAddCardModal = document.getElementById('closeAddCardModal');
+    const passwordInput = document.getElementById('passwordInput');
+    const submitPassword = document.getElementById('submitPassword');
+    const passwordError = document.getElementById('passwordError');
+    const addCardForm = document.getElementById('addCardForm');
+    const cancelForm = document.getElementById('cancelForm');
+    const galleryGrid = document.getElementById('galleryGrid');
+    
+    // Event Listeners
+    addNewBtn.addEventListener('click', showPasswordModal);
+    closePasswordModal.addEventListener('click', hidePasswordModal);
+    closeAddCardModal.addEventListener('click', hideAddCardModal);
+    submitPassword.addEventListener('click', checkPassword);
+    passwordInput.addEventListener('keypress', function(e) {
+        if (e.key === 'Enter') {
+            checkPassword();
+        }
+    });
+    addCardForm.addEventListener('submit', handleFormSubmit);
+    cancelForm.addEventListener('click', hideAddCardModal);
+    
+    // Close modals when clicking outside
+    window.addEventListener('click', function(e) {
+        if (e.target === passwordModal) {
+            hidePasswordModal();
+        }
+        if (e.target === addCardModal) {
+            hideAddCardModal();
+        }
     });
     
-    // View Details Button Functionality
-    const viewBtns = document.querySelectorAll('.view-btn');
-    viewBtns.forEach(btn => {
-        btn.addEventListener('click', function(e) {
-            e.stopPropagation();
-            const card = this.closest('.gallery-card');
-            const title = card.querySelector('.card-title').textContent;
-            
-            // Create modal or navigate to detail page
-            console.log('Viewing details for:', title);
-            // This would typically open a modal or navigate to a detail page
-        });
-    });
+    // Functions
+    function showPasswordModal() {
+        passwordModal.style.display = 'block';
+        passwordInput.focus();
+        passwordError.style.display = 'none';
+        passwordInput.value = '';
+    }
     
-    // Load More Functionality
-    const loadMoreBtn = document.querySelector('.load-more-btn');
-    if (loadMoreBtn) {
-        loadMoreBtn.addEventListener('click', function() {
-            // Simulate loading more content
-            console.log('Loading more gallery items...');
+    function hidePasswordModal() {
+        passwordModal.style.display = 'none';
+        passwordInput.value = '';
+        passwordError.style.display = 'none';
+    }
+    
+    function showAddCardModal() {
+        hidePasswordModal();
+        addCardModal.style.display = 'block';
+        document.getElementById('cardName').focus();
+    }
+    
+    function hideAddCardModal() {
+        addCardModal.style.display = 'none';
+        addCardForm.reset();
+    }
+    
+    function checkPassword() {
+        const enteredPassword = passwordInput.value.trim();
+        
+        if (enteredPassword === ADMIN_PASSWORD) {
+            showAddCardModal();
+        } else {
+            passwordError.style.display = 'block';
+            passwordInput.value = '';
+            passwordInput.focus();
             
-            // Add loading state
-            this.innerHTML = '<span>Loading...</span>';
-            
-            // Simulate API call
+            // Hide error after 3 seconds
             setTimeout(() => {
-                this.innerHTML = '<span>Load More Projects</span><div class="btn-ripple"></div>';
-                // Here you would typically load more items from an API
-            }, 1500);
+                passwordError.style.display = 'none';
+            }, 3000);
+        }
+    }
+    
+    function handleFormSubmit(e) {
+        e.preventDefault();
+        
+        // Get form data
+        const formData = new FormData(addCardForm);
+        const cardData = {
+            name: document.getElementById('cardName').value,
+            description: document.getElementById('cardDescription').value,
+            date: document.getElementById('cardDate').value,
+            location: document.getElementById('cardLocation').value,
+            image: document.getElementById('cardImage').files[0]
+        };
+        
+        // Validate form
+        if (!cardData.name || !cardData.description || !cardData.date || !cardData.location || !cardData.image) {
+            alert('Lütfen tüm alanları doldurun!');
+            return;
+        }
+        
+        // Create new card
+        createNewCard(cardData);
+        
+        // Hide modal and reset form
+        hideAddCardModal();
+    }
+    
+    function createNewCard(cardData) {
+        const cardElement = document.createElement('div');
+        cardElement.className = 'gallery-item';
+        cardElement.style.opacity = '0';
+        cardElement.style.transform = 'translateY(50px)';
+        
+        // Format date
+        const dateObj = new Date(cardData.date);
+        const formattedDate = dateObj.toLocaleDateString('tr-TR', {
+            year: 'numeric',
+            month: 'long',
+            day: 'numeric'
+        });
+        
+        // Create image URL from file
+        const imageUrl = URL.createObjectURL(cardData.image);
+        
+        cardElement.innerHTML = `
+            <div class="glass-card gallery-card">
+                <div class="card-image">
+                    <img src="${imageUrl}" alt="${cardData.name}" style="width: 100%; height: 100%; object-fit: cover; border-radius: 20px;" />
+                    <div class="image-overlay">
+                        <button class="view-btn">
+                            <span>Detayları Gör</span>
+                        </button>
+                    </div>
+                </div>
+                <div class="card-content">
+                    <h3 class="card-title">${cardData.name}</h3>
+                    <p class="card-description">${cardData.description}</p>
+                    <div class="card-stats">
+                        <span class="stat">📍 ${cardData.location}</span>
+                        <span class="stat">📅 ${formattedDate}</span>
+                    </div>
+                </div>
+            </div>
+        `;
+        
+        // Insert before the add button
+        galleryGrid.insertBefore(cardElement, galleryGrid.firstChild);
+        
+        // Animate in
+        setTimeout(() => {
+            cardElement.style.transition = 'all 0.8s ease-out';
+            cardElement.style.opacity = '1';
+            cardElement.style.transform = 'translateY(0)';
+        }, 100);
+        
+        // Add hover effects and view button functionality
+        const viewBtn = cardElement.querySelector('.view-btn');
+        viewBtn.addEventListener('click', function(e) {
+            e.stopPropagation();
+            showCardDetails(cardData, imageUrl);
+        });
+        
+        // Update stats (optional)
+        updateGalleryStats();
+    }
+    
+    function showCardDetails(cardData, imageUrl) {
+        // Create detail modal (simple implementation)
+        const detailModal = document.createElement('div');
+        detailModal.className = 'modal';
+        detailModal.style.display = 'block';
+        
+        detailModal.innerHTML = `
+            <div class="modal-content" style="max-width: 800px;">
+                <div class="modal-header">
+                    <h2>${cardData.name}</h2>
+                    <span class="close" onclick="this.closest('.modal').remove()">&times;</span>
+                </div>
+                <div class="modal-body">
+                    <img src="${imageUrl}" alt="${cardData.name}" style="width: 100%; max-height: 400px; object-fit: cover; border-radius: 10px; margin-bottom: 1rem;" />
+                    <p style="margin-bottom: 1rem; line-height: 1.6;">${cardData.description}</p>
+                    <div style="display: flex; gap: 1rem; flex-wrap: wrap;">
+                        <span class="stat">📍 ${cardData.location}</span>
+                        <span class="stat">📅 ${new Date(cardData.date).toLocaleDateString('tr-TR')}</span>
+                    </div>
+                </div>
+            </div>
+        `;
+        
+        document.body.appendChild(detailModal);
+        
+        // Close when clicking outside
+        detailModal.addEventListener('click', function(e) {
+            if (e.target === detailModal) {
+                detailModal.remove();
+            }
         });
     }
     
-    // Intersection Observer for scroll animations
+    function updateGalleryStats() {
+        const statNumbers = document.querySelectorAll('.stat-number');
+        statNumbers.forEach(stat => {
+            const currentValue = parseInt(stat.textContent.replace(/[^\d]/g, ''));
+            const newValue = currentValue + 1;
+            const suffix = stat.textContent.replace(/[\d]/g, '');
+            stat.textContent = newValue + suffix;
+        });
+    }
+    
+    // Intersection Observer for scroll animations (keep existing functionality)
     const observerOptions = {
         threshold: 0.1,
         rootMargin: '50px'
@@ -79,11 +225,12 @@ document.addEventListener('DOMContentLoaded', function() {
     }, observerOptions);
     
     // Observe gallery items for scroll animations
+    const galleryItems = document.querySelectorAll('.gallery-item');
     galleryItems.forEach(item => {
         observer.observe(item);
     });
     
-    // Stats animation
+    // Stats animation (keep existing functionality)
     const statNumbers = document.querySelectorAll('.stat-number');
     const statsObserver = new IntersectionObserver((entries) => {
         entries.forEach(entry => {

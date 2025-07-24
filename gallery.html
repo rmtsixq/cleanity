@@ -61,196 +61,75 @@
         </div>
     </section>
 
-    <!-- Gallery Filters -->
-    <section class="gallery-filters">
-        <div class="section-container">
-            <div class="filter-tabs">
-                <button class="filter-btn active" data-filter="all">
-                    <span>All Projects</span>
-                    <div class="btn-ripple"></div>
-                </button>
-                <button class="filter-btn" data-filter="cleanups">
-                    <span>🧹 Cleanups</span>
-                    <div class="btn-ripple"></div>
-                </button>
-                <button class="filter-btn" data-filter="workshops">
-                    <span>🎓 Workshops</span>
-                    <div class="btn-ripple"></div>
-                </button>
-                <button class="filter-btn" data-filter="community">
-                    <span>🤝 Community</span>
-                    <div class="btn-ripple"></div>
-                </button>
-                <button class="filter-btn" data-filter="events">
-                    <span>🎉 Events</span>
-                    <div class="btn-ripple"></div>
-                </button>
-            </div>
-        </div>
-    </section>
-
     <!-- Gallery Grid -->
     <section class="gallery-grid-section">
         <div class="section-container">
-            <div class="gallery-grid">
-                <!-- Cleanup Photos -->
-                <div class="gallery-item cleanup-item" data-category="cleanups">
-                    <div class="glass-card gallery-card">
-                        <div class="card-image">
-                            <div class="image-placeholder">
-                                <span class="placeholder-icon">🏖️</span>
-                                <span class="placeholder-text">Beach Cleanup</span>
-                            </div>
-                            <div class="image-overlay">
-                                <button class="view-btn">
-                                    <span>View Details</span>
-                                </button>
-                            </div>
-                        </div>
-                        <div class="card-content">
-                            <h3 class="card-title">Pacific Beach Restoration</h3>
-                            <p class="card-description">200+ volunteers collected 5 tons of debris</p>
-                            <div class="card-stats">
-                                <span class="stat">📍 San Diego, CA</span>
-                                <span class="stat">📅 March 2024</span>
-                            </div>
+            <div class="gallery-grid" id="galleryGrid">
+                <!-- Add New Card Button -->
+                <div class="gallery-item add-new-item">
+                    <div class="glass-card add-new-card" id="addNewBtn">
+                        <div class="add-new-content">
+                            <div class="add-icon">+</div>
+                            <div class="add-text">Yeni Kart Ekle</div>
                         </div>
                     </div>
                 </div>
-
-                <div class="gallery-item cleanup-item" data-category="cleanups">
-                    <div class="glass-card gallery-card">
-                        <div class="card-image">
-                            <div class="image-placeholder">
-                                <span class="placeholder-icon">🏞️</span>
-                                <span class="placeholder-text">Park Cleanup</span>
-                            </div>
-                            <div class="image-overlay">
-                                <button class="view-btn">
-                                    <span>View Details</span>
-                                </button>
-                            </div>
-                        </div>
-                        <div class="card-content">
-                            <h3 class="card-title">Central Park Revival</h3>
-                            <p class="card-description">Community effort to restore local green spaces</p>
-                            <div class="card-stats">
-                                <span class="stat">📍 New York, NY</span>
-                                <span class="stat">📅 February 2024</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Workshop Photos -->
-                <div class="gallery-item workshop-item" data-category="workshops">
-                    <div class="glass-card gallery-card">
-                        <div class="card-image">
-                            <div class="image-placeholder">
-                                <span class="placeholder-icon">♻️</span>
-                                <span class="placeholder-text">Recycling Workshop</span>
-                            </div>
-                            <div class="image-overlay">
-                                <button class="view-btn">
-                                    <span>View Details</span>
-                                </button>
-                            </div>
-                        </div>
-                        <div class="card-content">
-                            <h3 class="card-title">Sustainability 101</h3>
-                            <p class="card-description">Teaching students about waste reduction</p>
-                            <div class="card-stats">
-                                <span class="stat">📍 Austin, TX</span>
-                                <span class="stat">📅 January 2024</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Community Photos -->
-                <div class="gallery-item community-item" data-category="community">
-                    <div class="glass-card gallery-card">
-                        <div class="card-image">
-                            <div class="image-placeholder">
-                                <span class="placeholder-icon">🌱</span>
-                                <span class="placeholder-text">Tree Planting</span>
-                            </div>
-                            <div class="image-overlay">
-                                <button class="view-btn">
-                                    <span>View Details</span>
-                                </button>
-                            </div>
-                        </div>
-                        <div class="card-content">
-                            <h3 class="card-title">Community Garden Project</h3>
-                            <p class="card-description">Planting hope for future generations</p>
-                            <div class="card-stats">
-                                <span class="stat">📍 Portland, OR</span>
-                                <span class="stat">📅 April 2024</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Event Photos -->
-                <div class="gallery-item event-item" data-category="events">
-                    <div class="glass-card gallery-card">
-                        <div class="card-image">
-                            <div class="image-placeholder">
-                                <span class="placeholder-icon">🎯</span>
-                                <span class="placeholder-text">Launch Event</span>
-                            </div>
-                            <div class="image-overlay">
-                                <button class="view-btn">
-                                    <span>View Details</span>
-                                </button>
-                            </div>
-                        </div>
-                        <div class="card-content">
-                            <h3 class="card-title">Global Cleanity Launch</h3>
-                            <p class="card-description">Where it all began - our first global event</p>
-                            <div class="card-stats">
-                                <span class="stat">📍 Virtual Event</span>
-                                <span class="stat">📅 December 2023</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="gallery-item cleanup-item" data-category="cleanups">
-                    <div class="glass-card gallery-card">
-                        <div class="card-image">
-                            <div class="image-placeholder">
-                                <span class="placeholder-icon">🏙️</span>
-                                <span class="placeholder-text">Urban Cleanup</span>
-                            </div>
-                            <div class="image-overlay">
-                                <button class="view-btn">
-                                    <span>View Details</span>
-                                </button>
-                            </div>
-                        </div>
-                        <div class="card-content">
-                            <h3 class="card-title">Downtown Street Cleanup</h3>
-                            <p class="card-description">Making city centers shine again</p>
-                            <div class="card-stats">
-                                <span class="stat">📍 Chicago, IL</span>
-                                <span class="stat">📅 March 2024</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Load More Button -->
-            <div class="load-more-container">
-                <button class="btn btn-secondary load-more-btn">
-                    <span>Load More Projects</span>
-                    <div class="btn-ripple"></div>
-                </button>
             </div>
         </div>
     </section>
+
+    <!-- Password Modal -->
+    <div id="passwordModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Şifre Gerekli</h2>
+                <span class="close" id="closePasswordModal">&times;</span>
+            </div>
+            <div class="modal-body">
+                <input type="password" id="passwordInput" placeholder="Şifreyi girin" />
+                <button id="submitPassword" class="btn btn-primary">Tamam</button>
+                <div id="passwordError" class="error-message" style="display: none;">Yanlış şifre!</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Add Card Form Modal -->
+    <div id="addCardModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Yeni Kart Ekle</h2>
+                <span class="close" id="closeAddCardModal">&times;</span>
+            </div>
+            <div class="modal-body">
+                <form id="addCardForm">
+                    <div class="form-group">
+                        <label for="cardName">İsim:</label>
+                        <input type="text" id="cardName" required />
+                    </div>
+                    <div class="form-group">
+                        <label for="cardDescription">Açıklama:</label>
+                        <textarea id="cardDescription" required></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label for="cardDate">Tarih:</label>
+                        <input type="date" id="cardDate" required />
+                    </div>
+                    <div class="form-group">
+                        <label for="cardLocation">Yer:</label>
+                        <input type="text" id="cardLocation" required />
+                    </div>
+                    <div class="form-group">
+                        <label for="cardImage">Fotoğraf:</label>
+                        <input type="file" id="cardImage" accept="image/*" required />
+                    </div>
+                    <div class="form-actions">
+                        <button type="submit" class="btn btn-primary">Tamam</button>
+                        <button type="button" class="btn btn-secondary" id="cancelForm">İptal</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
 
     <!-- Impact Stats -->
     <section class="gallery-stats">

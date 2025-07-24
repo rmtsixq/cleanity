@@ -16,6 +16,12 @@ document.addEventListener('DOMContentLoaded', function() {
     const addCardForm = document.getElementById('addCardForm');
     const cancelForm = document.getElementById('cancelForm');
     const galleryGrid = document.getElementById('galleryGrid');
+
+    // LocalStorage Key
+    const STORAGE_KEY = 'gallery_cards';
+
+    // Load cards from localStorage on page load
+    loadCardsFromStorage();
     
     // Event Listeners
     addNewBtn.addEventListener('click', showPasswordModal);
@@ -86,7 +92,6 @@ document.addEventListener('DOMContentLoaded', function() {
         e.preventDefault();
         
         // Get form data
-        const formData = new FormData(addCardForm);
         const cardData = {
             name: document.getElementById('cardName').value,
             description: document.getElementById('cardDescription').value,
@@ -97,18 +102,43 @@ document.addEventListener('DOMContentLoaded', function() {
         
         // Validate form
         if (!cardData.name || !cardData.description || !cardData.date || !cardData.location || !cardData.image) {
-            alert('Lütfen tüm alanları doldurun!');
+            alert('Please fill in all fields!');
             return;
         }
         
-        // Create new card
-        createNewCard(cardData);
-        
-        // Hide modal and reset form
-        hideAddCardModal();
+        // Convert image to base64 and then save
+        const reader = new FileReader();
+        reader.onload = function(event) {
+            cardData.imageBase64 = event.target.result;
+            saveCardToStorage(cardData);
+            createNewCard(cardData, true); // true: from form
+            hideAddCardModal();
+        };
+        reader.readAsDataURL(cardData.image);
+    }
+
+    function saveCardToStorage(cardData) {
+        // Remove File object, only keep base64
+        const cardToSave = {
+            name: cardData.name,
+            description: cardData.description,
+            date: cardData.date,
+            location: cardData.location,
+            imageBase64: cardData.imageBase64
+        };
+        let cards = JSON.parse(localStorage.getItem(STORAGE_KEY)) || [];
+        cards.unshift(cardToSave); // Add to start
+        localStorage.setItem(STORAGE_KEY, JSON.stringify(cards));
+    }
+
+    function loadCardsFromStorage() {
+        let cards = JSON.parse(localStorage.getItem(STORAGE_KEY)) || [];
+        cards.forEach(card => {
+            createNewCard(card, false); // false: from storage
+        });
     }
     
-    function createNewCard(cardData) {
+    function createNewCard(cardData, isNew) {
         const cardElement = document.createElement('div');
         cardElement.className = 'gallery-item';
         cardElement.style.opacity = '0';
@@ -116,14 +146,14 @@ document.addEventListener('DOMContentLoaded', function() {
         
         // Format date
         const dateObj = new Date(cardData.date);
-        const formattedDate = dateObj.toLocaleDateString('tr-TR', {
+        const formattedDate = dateObj.toLocaleDateString('en-US', {
             year: 'numeric',
             month: 'long',
             day: 'numeric'
         });
         
-        // Create image URL from file
-        const imageUrl = URL.createObjectURL(cardData.image);
+        // Use base64 image
+        const imageUrl = cardData.imageBase64;
         
         cardElement.innerHTML = `
             <div class="glass-card gallery-card">
@@ -131,7 +161,7 @@ document.addEventListener('DOMContentLoaded', function() {
                     <img src="${imageUrl}" alt="${cardData.name}" style="width: 100%; height: 100%; object-fit: cover; border-radius: 20px;" />
                     <div class="image-overlay">
                         <button class="view-btn">
-                            <span>Detayları Gör</span>
+                            <span>View Details</span>
                         </button>
                     </div>
                 </div>
@@ -154,7 +184,7 @@ document.addEventListener('DOMContentLoaded', function() {
             cardElement.style.transition = 'all 0.8s ease-out';
             cardElement.style.opacity = '1';
             cardElement.style.transform = 'translateY(0)';
-        }, 100);
+        }, isNew ? 100 : 0);
         
         // Add hover effects and view button functionality
         const viewBtn = cardElement.querySelector('.view-btn');
@@ -184,7 +214,7 @@ document.addEventListener('DOMContentLoaded', function() {
                     <p style="margin-bottom: 1rem; line-height: 1.6;">${cardData.description}</p>
                     <div style="display: flex; gap: 1rem; flex-wrap: wrap;">
                         <span class="stat">📍 ${cardData.location}</span>
-                        <span class="stat">📅 ${new Date(cardData.date).toLocaleDateString('tr-TR')}</span>
+                        <span class="stat">📅 ${new Date(cardData.date).toLocaleDateString('en-US')}</span>
                     </div>
                 </div>
             </div>

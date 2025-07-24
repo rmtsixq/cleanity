@@ -349,3 +349,436 @@ document.addEventListener('DOMContentLoaded', function() {
     
     console.log('🌱 Cleanity Homepage Loaded! Ready to make a difference!');
 });
+
+// Global centralized data for the entire site
+window.CleanityData = {
+    stats: {
+        members: {
+            value: 200,
+            suffix: '+',
+            label: 'Members',
+            labelAlternatives: ['Active Members']
+        },
+        citiesActive: {
+            value: 5,
+            suffix: '',
+            label: 'Cities Active',
+            labelAlternatives: []
+        },
+        citiesDocumented: {
+            value: 50,
+            suffix: '+',
+            label: 'Cities Documented',
+            labelAlternatives: []
+        },
+        eventsOrganized: {
+            value: 20,
+            suffix: '+',
+            label: 'Events Organized',
+            labelAlternatives: []
+        },
+        trashCollected: {
+            value: 2.5,
+            suffix: 'M',
+            label: 'Pieces of Trash',
+            labelAlternatives: ['Pieces Collected', 'Waste Collected']
+        },
+        studentsEducated: {
+            value: 1200,
+            suffix: '',
+            label: 'Students Educated',
+            labelAlternatives: []
+        },
+        communityPartners: {
+            value: 15,
+            suffix: '',
+            label: 'Community Partners',
+            labelAlternatives: ['Partnerships']
+        },
+        photosCaptured: {
+            value: 500,
+            suffix: '+',
+            label: 'Photos Captured',
+            labelAlternatives: []
+        },
+        hoursRecorded: {
+            value: 10,
+            suffix: 'K+',
+            label: 'Hours Recorded',
+            labelAlternatives: []
+        },
+        livesImpacted: {
+            value: 1,
+            suffix: 'M+',
+            label: 'Lives Impacted',
+            labelAlternatives: []
+        }
+    },
+
+    // Format number for display
+    formatStat: function(statKey) {
+        const stat = this.stats[statKey];
+        if (!stat) return '';
+        
+        let formattedValue = stat.value;
+        if (stat.value >= 1000 && !stat.suffix.includes('K') && !stat.suffix.includes('M')) {
+            formattedValue = (stat.value / 1000).toFixed(1) + 'K';
+        } else {
+            formattedValue = stat.value.toString();
+        }
+        
+        return formattedValue + stat.suffix;
+    },
+
+    // Update a stat value
+    updateStat: function(statKey, newValue) {
+        if (this.stats[statKey]) {
+            this.stats[statKey].value = newValue;
+            this.refreshAllStats();
+            this.saveToLocalStorage();
+        }
+    },
+
+    // Refresh all stat displays on the current page
+    refreshAllStats: function() {
+        // Update all elements with data-stat attribute
+        const statElements = document.querySelectorAll('[data-stat]');
+        statElements.forEach(element => {
+            const statKey = element.getAttribute('data-stat');
+            if (this.stats[statKey]) {
+                const className = element.className;
+                
+                // Handle different types of elements
+                if (className.includes('circle-number') || className.includes('stat-number')) {
+                    // For pure number displays, replace entire content
+                    element.textContent = this.formatStat(statKey);
+                } else {
+                    // For text with embedded numbers, replace the number part
+                    const textContent = element.textContent;
+                    
+                    // Different regex patterns for different stat types
+                    let numberPattern;
+                    if (statKey === 'trashCollected') {
+                        numberPattern = /[\d.,]+(\s+)?million|[\d.,]+[M]/gi;
+                    } else if (statKey === 'studentsEducated') {
+                        numberPattern = /[\d.,]+(\s+students)?/gi;
+                    } else if (statKey === 'communityPartners') {
+                        numberPattern = /\b\d+\b/g;
+                    } else {
+                        numberPattern = /[\d.,]+[KM\+]*/g;
+                    }
+                    
+                    const matches = textContent.match(numberPattern);
+                    if (matches && matches.length > 0) {
+                        let newText = textContent;
+                        
+                        // Replace the number based on stat type
+                        if (statKey === 'trashCollected') {
+                            newText = textContent.replace(numberPattern, this.formatStat(statKey).toLowerCase() + ' million');
+                        } else {
+                            newText = textContent.replace(matches[0], this.formatStat(statKey));
+                        }
+                        
+                        element.textContent = newText;
+                    }
+                }
+            }
+        });
+    },
+
+    // Save to localStorage
+    saveToLocalStorage: function() {
+        localStorage.setItem('cleanityData', JSON.stringify(this.stats));
+    },
+
+    // Load from localStorage
+    loadFromLocalStorage: function() {
+        const saved = localStorage.getItem('cleanityData');
+        if (saved) {
+            try {
+                const savedData = JSON.parse(saved);
+                // Merge saved data with current structure
+                Object.keys(savedData).forEach(key => {
+                    if (this.stats[key] && savedData[key].value !== undefined) {
+                        this.stats[key].value = savedData[key].value;
+                    }
+                });
+            } catch (e) {
+                console.warn('Failed to load saved data:', e);
+            }
+        }
+    }
+};
+
+// Innovation card click counter for data management access
+let innovationClickCount = 0;
+let innovationClickTimer = null;
+
+// Initialize data management system
+document.addEventListener('DOMContentLoaded', function() {
+    // Load saved data
+    window.CleanityData.loadFromLocalStorage();
+    
+    // Initialize stats on page load
+    setTimeout(() => {
+        window.CleanityData.refreshAllStats();
+    }, 100);
+
+    // Set up innovation card click detection (if on join page)
+    const innovationCard = document.querySelector('.benefit-card .benefit-icon:contains("💡")')?.closest('.benefit-card');
+    if (!innovationCard) {
+        // Alternative selector for innovation card
+        const benefitCards = document.querySelectorAll('.benefit-card');
+        benefitCards.forEach(card => {
+            const iconElement = card.querySelector('.benefit-icon');
+            const titleElement = card.querySelector('.benefit-title');
+            if ((iconElement && iconElement.textContent.includes('💡')) || 
+                (titleElement && titleElement.textContent.toLowerCase().includes('innovation'))) {
+                setupInnovationCardClick(card);
+            }
+        });
+    } else {
+        setupInnovationCardClick(innovationCard);
+    }
+});
+
+function setupInnovationCardClick(innovationCard) {
+    innovationCard.addEventListener('click', function() {
+        innovationClickCount++;
+        
+        // Clear existing timer
+        if (innovationClickTimer) {
+            clearTimeout(innovationClickTimer);
+        }
+        
+        // Reset counter after 2 seconds of no clicks
+        innovationClickTimer = setTimeout(() => {
+            innovationClickCount = 0;
+        }, 2000);
+        
+        // Open data management on 3rd click
+        if (innovationClickCount >= 3) {
+            innovationClickCount = 0;
+            openDataManagementModal();
+        }
+    });
+}
+
+function openDataManagementModal() {
+    // Create modal if it doesn't exist
+    if (!document.getElementById('dataManagementModal')) {
+        createDataManagementModal();
+    }
+    
+    const modal = document.getElementById('dataManagementModal');
+    modal.classList.add('active');
+    document.body.style.overflow = 'hidden';
+    
+    // Populate current values
+    populateDataManagementForm();
+}
+
+function createDataManagementModal() {
+    const modalHTML = `
+        <div class="form-modal" id="dataManagementModal">
+            <div class="modal-overlay"></div>
+            <div class="modal-content">
+                <div class="glass-card data-management-card">
+                    <div class="form-header">
+                        <h2 class="form-title">📊 Site İstatistik Yönetimi</h2>
+                        <button class="close-btn" id="closeDataModal">×</button>
+                    </div>
+                    
+                    <form class="data-management-form" id="dataManagementForm">
+                        <div class="form-section">
+                            <h3 class="section-title">Temel İstatistikler</h3>
+                            
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="members" class="form-label">Üye Sayısı</label>
+                                    <input type="number" id="members" name="members" class="form-input" min="0">
+                                    <div class="input-underline"></div>
+                                </div>
+                                
+                                <div class="form-group">
+                                    <label for="citiesActive" class="form-label">Aktif Şehir Sayısı</label>
+                                    <input type="number" id="citiesActive" name="citiesActive" class="form-input" min="0">
+                                    <div class="input-underline"></div>
+                                </div>
+                            </div>
+                            
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="eventsOrganized" class="form-label">Organize Edilen Etkinlik</label>
+                                    <input type="number" id="eventsOrganized" name="eventsOrganized" class="form-input" min="0">
+                                    <div class="input-underline"></div>
+                                </div>
+                                
+                                <div class="form-group">
+                                    <label for="trashCollected" class="form-label">Toplanan Çöp (Milyon)</label>
+                                    <input type="number" id="trashCollected" name="trashCollected" class="form-input" min="0" step="0.1">
+                                    <div class="input-underline"></div>
+                                </div>
+                            </div>
+                            
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="studentsEducated" class="form-label">Eğitim Alan Öğrenci</label>
+                                    <input type="number" id="studentsEducated" name="studentsEducated" class="form-input" min="0">
+                                    <div class="input-underline"></div>
+                                </div>
+                                
+                                <div class="form-group">
+                                    <label for="communityPartners" class="form-label">Topluluk Ortağı</label>
+                                    <input type="number" id="communityPartners" name="communityPartners" class="form-input" min="0">
+                                    <div class="input-underline"></div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="form-section">
+                            <h3 class="section-title">Galeri İstatistikleri</h3>
+                            
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="citiesDocumented" class="form-label">Belgelenen Şehir</label>
+                                    <input type="number" id="citiesDocumented" name="citiesDocumented" class="form-input" min="0">
+                                    <div class="input-underline"></div>
+                                </div>
+                                
+                                <div class="form-group">
+                                    <label for="photosCaptured" class="form-label">Çekilen Fotoğraf</label>
+                                    <input type="number" id="photosCaptured" name="photosCaptured" class="form-input" min="0">
+                                    <div class="input-underline"></div>
+                                </div>
+                            </div>
+                            
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="hoursRecorded" class="form-label">Kaydedilen Saat (Bin)</label>
+                                    <input type="number" id="hoursRecorded" name="hoursRecorded" class="form-input" min="0">
+                                    <div class="input-underline"></div>
+                                </div>
+                                
+                                <div class="form-group">
+                                    <label for="livesImpacted" class="form-label">Etkilenen Yaşam (Milyon)</label>
+                                    <input type="number" id="livesImpacted" name="livesImpacted" class="form-input" min="0" step="0.1">
+                                    <div class="input-underline"></div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="form-actions">
+                            <button type="button" class="btn btn-secondary" id="cancelDataBtn">
+                                <span>İptal</span>
+                            </button>
+                            <button type="submit" class="btn btn-primary">
+                                <span>Kaydet ve Güncelle</span>
+                                <div class="btn-ripple"></div>
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    `;
+    
+    document.body.insertAdjacentHTML('beforeend', modalHTML);
+    
+    // Add event listeners
+    const modal = document.getElementById('dataManagementModal');
+    const overlay = modal.querySelector('.modal-overlay');
+    const closeBtn = document.getElementById('closeDataModal');
+    const cancelBtn = document.getElementById('cancelDataBtn');
+    const form = document.getElementById('dataManagementForm');
+    
+    closeBtn.addEventListener('click', closeDataManagementModal);
+    cancelBtn.addEventListener('click', closeDataManagementModal);
+    overlay.addEventListener('click', closeDataManagementModal);
+    
+    // Prevent modal close when clicking inside modal content
+    modal.querySelector('.modal-content').addEventListener('click', function(e) {
+        e.stopPropagation();
+    });
+    
+    form.addEventListener('submit', function(e) {
+        e.preventDefault();
+        saveDataManagementForm();
+    });
+}
+
+function populateDataManagementForm() {
+    const form = document.getElementById('dataManagementForm');
+    if (!form) return;
+    
+    const data = window.CleanityData.stats;
+    
+    form.members.value = data.members.value;
+    form.citiesActive.value = data.citiesActive.value;
+    form.eventsOrganized.value = data.eventsOrganized.value;
+    form.trashCollected.value = data.trashCollected.value;
+    form.studentsEducated.value = data.studentsEducated.value;
+    form.communityPartners.value = data.communityPartners.value;
+    form.citiesDocumented.value = data.citiesDocumented.value;
+    form.photosCaptured.value = data.photosCaptured.value;
+    form.hoursRecorded.value = data.hoursRecorded.value;
+    form.livesImpacted.value = data.livesImpacted.value;
+}
+
+function saveDataManagementForm() {
+    const form = document.getElementById('dataManagementForm');
+    const formData = new FormData(form);
+    
+    // Update all values
+    window.CleanityData.updateStat('members', parseInt(formData.get('members')));
+    window.CleanityData.updateStat('citiesActive', parseInt(formData.get('citiesActive')));
+    window.CleanityData.updateStat('eventsOrganized', parseInt(formData.get('eventsOrganized')));
+    window.CleanityData.updateStat('trashCollected', parseFloat(formData.get('trashCollected')));
+    window.CleanityData.updateStat('studentsEducated', parseInt(formData.get('studentsEducated')));
+    window.CleanityData.updateStat('communityPartners', parseInt(formData.get('communityPartners')));
+    window.CleanityData.updateStat('citiesDocumented', parseInt(formData.get('citiesDocumented')));
+    window.CleanityData.updateStat('photosCaptured', parseInt(formData.get('photosCaptured')));
+    window.CleanityData.updateStat('hoursRecorded', parseInt(formData.get('hoursRecorded')));
+    window.CleanityData.updateStat('livesImpacted', parseFloat(formData.get('livesImpacted')));
+    
+    // Show success message
+    showDataManagementSuccess();
+    
+    // Close modal
+    closeDataManagementModal();
+}
+
+function closeDataManagementModal() {
+    const modal = document.getElementById('dataManagementModal');
+    if (modal) {
+        modal.classList.remove('active');
+        document.body.style.overflow = '';
+    }
+}
+
+function showDataManagementSuccess() {
+    const successNotification = document.createElement('div');
+    successNotification.style.cssText = `
+        position: fixed;
+        top: 20px;
+        right: 20px;
+        background: var(--primary-green);
+        color: white;
+        padding: 1rem 2rem;
+        border-radius: 8px;
+        box-shadow: 0 10px 30px rgba(16, 185, 129, 0.3);
+        z-index: 1001;
+        animation: slideInRight 0.3s ease-out;
+    `;
+    
+    successNotification.innerHTML = `
+        <strong>✓ İstatistikler başarıyla güncellendi!</strong><br>
+        Tüm sayfalardaki veriler güncellenmiştir.
+    `;
+    
+    document.body.appendChild(successNotification);
+    
+    setTimeout(() => {
+        successNotification.remove();
+    }, 5000);
+}

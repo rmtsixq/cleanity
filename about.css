@@ -1,0 +1,145 @@
+body {
+    background: #f8f9fa;
+    color: #222;
+    font-family: 'Segoe UI', Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+.logo-link {
+    display: inline-block;
+    vertical-align: middle;
+    margin-right: 1.5rem;
+}
+.logo-img {
+    height: 44px;
+    width: auto;
+    border-radius: 8px;
+    vertical-align: middle;
+    box-shadow: 0 2px 8px rgba(44,62,80,0.08);
+}
+header {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background: #fff;
+    border-bottom: 1px solid #e0e0e0;
+    padding-top: 1.2rem;
+}
+.logo-link {
+    margin-bottom: 0.7rem;
+}
+header nav {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: none;
+    border: none;
+    padding: 0 0 1rem 0;
+    text-align: center;
+    gap: 0.2rem;
+}
+header nav a {
+    color: #2a7a4b;
+    text-decoration: none;
+    margin: 0 1.2rem;
+    font-weight: 500;
+    font-size: 1.1rem;
+    transition: color 0.2s;
+    position: relative;
+    padding-bottom: 4px;
+}
+header nav a.active, header nav a:hover {
+    color: #1e5631;
+}
+header nav a.active::after {
+    content: '';
+    display: block;
+    margin: 0 auto;
+    width: 60%;
+    border-bottom: 2.5px solid #1e5631;
+    border-radius: 2px;
+    margin-top: 2px;
+}
+
+.about-container {
+    max-width: 900px;
+    margin: 2.5rem auto 2rem auto;
+    background: #fff;
+    border-radius: 12px;
+    box-shadow: 0 2px 12px rgba(44, 62, 80, 0.07);
+    padding: 2.5rem 2rem 2rem 2rem;
+}
+
+.about-hero {
+    text-align: center;
+    margin-bottom: 2.5rem;
+}
+.about-hero h1 {
+    font-size: 2.7rem;
+    color: #2a7a4b;
+    margin-bottom: 0.5rem;
+}
+.about-hero p {
+    font-size: 1.3rem;
+    color: #555;
+}
+
+.about-mission, .about-values, .about-vision, .about-history {
+    margin-bottom: 2.2rem;
+}
+.about-mission h2, .about-values h2, .about-vision h2, .about-history h2 {
+    color: #1e5631;
+    font-size: 2rem;
+    margin-bottom: 0.7rem;
+}
+.about-mission p, .about-vision p, .about-history p {
+    font-size: 1.08rem;
+    color: #333;
+    line-height: 1.7;
+}
+.about-values ul {
+    list-style: disc inside;
+    padding-left: 1.2rem;
+}
+.about-values li {
+    font-size: 1.08rem;
+    margin-bottom: 0.5rem;
+    color: #2a7a4b;
+}
+.about-values li strong {
+    color: #1e5631;
+}
+
+footer {
+    text-align: center;
+    padding: 1.2rem 0 0.7rem 0;
+    color: #888;
+    font-size: 1rem;
+    background: none;
+    border-top: 1px solid #e0e0e0;
+    margin-top: 2rem;
+}
+
+@media (max-width: 600px) {
+    .about-container {
+        padding: 1.2rem 0.5rem;
+    }
+    .about-hero h1 {
+        font-size: 2rem;
+    }
+    .about-mission h2, .about-values h2, .about-vision h2, .about-history h2 {
+        font-size: 1.3rem;
+    }
+    .logo-img {
+        height: 32px;
+    }
+    header nav {
+        flex-wrap: wrap;
+        gap: 0.1rem;
+    }
+    header nav a {
+        margin: 0 0.5rem;
+        font-size: 1rem;
+    }
+} 

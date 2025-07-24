@@ -510,9 +510,9 @@ window.CleanityData = {
     }
 };
 
-// Innovation card click counter for data management access
-let innovationClickCount = 0;
-let innovationClickTimer = null;
+// Keyboard shortcut for data management access
+let typedKeys = '';
+let keyTimeout = null;
 
 // Initialize data management system
 document.addEventListener('DOMContentLoaded', function() {
@@ -524,42 +524,42 @@ document.addEventListener('DOMContentLoaded', function() {
         window.CleanityData.refreshAllStats();
     }, 100);
 
-    // Set up innovation card click detection (if on join page)
-    const innovationCard = document.querySelector('.benefit-card .benefit-icon:contains("💡")')?.closest('.benefit-card');
-    if (!innovationCard) {
-        // Alternative selector for innovation card
-        const benefitCards = document.querySelectorAll('.benefit-card');
-        benefitCards.forEach(card => {
-            const iconElement = card.querySelector('.benefit-icon');
-            const titleElement = card.querySelector('.benefit-title');
-            if ((iconElement && iconElement.textContent.includes('💡')) || 
-                (titleElement && titleElement.textContent.toLowerCase().includes('innovation'))) {
-                setupInnovationCardClick(card);
-            }
-        });
-    } else {
-        setupInnovationCardClick(innovationCard);
-    }
+    // Set up keyboard shortcut listener
+    setupKeyboardShortcut();
 });
 
-function setupInnovationCardClick(innovationCard) {
-    innovationCard.addEventListener('click', function() {
-        innovationClickCount++;
-        
-        // Clear existing timer
-        if (innovationClickTimer) {
-            clearTimeout(innovationClickTimer);
+function setupKeyboardShortcut() {
+    document.addEventListener('keydown', function(e) {
+        // Ignore if user is typing in an input field
+        if (e.target.tagName === 'INPUT' || e.target.tagName === 'TEXTAREA' || e.target.isContentEditable) {
+            return;
         }
         
-        // Reset counter after 2 seconds of no clicks
-        innovationClickTimer = setTimeout(() => {
-            innovationClickCount = 0;
+        // Add the typed key to our string
+        typedKeys += e.key.toLowerCase();
+        
+        // Clear timeout if it exists
+        if (keyTimeout) {
+            clearTimeout(keyTimeout);
+        }
+        
+        // Reset typed keys after 2 seconds of no typing
+        keyTimeout = setTimeout(() => {
+            typedKeys = '';
         }, 2000);
         
-        // Open data management on 3rd click
-        if (innovationClickCount >= 3) {
-            innovationClickCount = 0;
+        // Check if "rumet" was typed
+        if (typedKeys.includes('rumet')) {
+            typedKeys = ''; // Reset
             openDataManagementModal();
+            
+            // Show a fun message
+            console.log('🎉 Rumet Asan detected! Opening data management panel...');
+        }
+        
+        // Keep only last 10 characters to prevent memory issues
+        if (typedKeys.length > 10) {
+            typedKeys = typedKeys.slice(-10);
         }
     });
 }

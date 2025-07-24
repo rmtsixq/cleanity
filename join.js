@@ -235,6 +235,7 @@ document.addEventListener('DOMContentLoaded', function() {
             })
             .then(response => response.json())
             .then(result => {
+                console.log('Telegram API yanıtı:', result); // <-- debug
                 if (result.ok) {
                     showApplicationSuccess();
                     closeModal();
@@ -245,6 +246,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 submitButton.disabled = false;
             })
             .catch(error => {
+                console.error('Telegram API hata:', error); // <-- debug
                 showFormErrors(["Bir hata oluştu. Lütfen tekrar deneyin."]);
                 submitButton.querySelector('span').textContent = originalText;
                 submitButton.disabled = false;

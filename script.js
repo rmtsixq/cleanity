@@ -385,7 +385,7 @@ window.CleanityData = {
         },
         studentsEducated: {
             value: 1200,
-            suffix: '',
+            suffix: 'K',
             label: 'Students Educated',
             labelAlternatives: []
         },
@@ -447,40 +447,31 @@ window.CleanityData = {
             const statKey = element.getAttribute('data-stat');
             if (this.stats[statKey]) {
                 const className = element.className;
-                
                 // Handle different types of elements
                 if (className.includes('circle-number') || className.includes('stat-number')) {
                     // For pure number displays, replace entire content
                     element.textContent = this.formatStat(statKey);
                 } else {
                     // For text with embedded numbers, replace the number part
-                    const textContent = element.textContent;
-                    
-                    // Different regex patterns for different stat types
-                    let numberPattern;
+                    let newText = element.textContent;
                     if (statKey === 'trashCollected') {
-                        numberPattern = /[\d.,]+(\s+)?million|[\d.,]+[M]/gi;
+                        // Replace any number + 'million' or 'M' with correct value
+                        newText = newText.replace(/([\d.,]+(\s+)?million|[\d.,]+[M])/gi, this.formatStat(statKey).toLowerCase() + ' million');
+                        // Remove any repeated 'million' words
+                        newText = newText.replace(/(million\s*){2,}/gi, 'million ');
                     } else if (statKey === 'studentsEducated') {
-                        numberPattern = /[\d.,]+(\s+students)?/gi;
+                        newText = newText.replace(/[\d.,]+(\s*students)?/gi, this.formatStat(statKey));
+                        newText = newText.replace(/(K\s*){2,}/gi, 'K');
                     } else if (statKey === 'communityPartners') {
-                        numberPattern = /\b\d+\b/g;
+                        newText = newText.replace(/\b\d+\b/g, this.formatStat(statKey));
                     } else {
-                        numberPattern = /[\d.,]+[KM\+]*/g;
+                        // Replace all number+suffix patterns
+                        newText = newText.replace(/[\d.,]+[KM\+]+/g, this.formatStat(statKey));
+                        // Remove any repeated K/M
+                        newText = newText.replace(/(K\+?\s*){2,}/gi, 'K');
+                        newText = newText.replace(/(M\+?\s*){2,}/gi, 'M');
                     }
-                    
-                    const matches = textContent.match(numberPattern);
-                    if (matches && matches.length > 0) {
-                        let newText = textContent;
-                        
-                        // Replace the number based on stat type
-                        if (statKey === 'trashCollected') {
-                            newText = textContent.replace(numberPattern, this.formatStat(statKey).toLowerCase() + ' million');
-                        } else {
-                            newText = textContent.replace(matches[0], this.formatStat(statKey));
-                        }
-                        
-                        element.textContent = newText;
-                    }
+                    element.textContent = newText;
                 }
             }
         });

@@ -50,6 +50,7 @@
     cursor: pointer;
     position: relative;
     overflow: hidden;
+    min-height: 420px;
 }
 
 .member-card:hover {
@@ -144,6 +145,7 @@
     color: var(--dark-text-secondary);
     line-height: 1.6;
     margin-bottom: 1.5rem;
+    overflow-wrap: break-word;
 }
 
 /* Member Stats (for leaders) */

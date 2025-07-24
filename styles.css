@@ -821,3 +821,209 @@ body {
         gap: 1rem;
     }
 }
+
+/* Modal Base Styles */
+.form-modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.8);
+    backdrop-filter: blur(10px);
+    display: none;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+    padding: 2rem;
+}
+
+.form-modal.active {
+    display: flex;
+}
+
+.modal-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    cursor: pointer;
+}
+
+.modal-content {
+    position: relative;
+    max-width: 800px;
+    width: 100%;
+    max-height: 90vh;
+    overflow-y: auto;
+    animation: modalSlideIn 0.3s ease-out;
+}
+
+@keyframes modalSlideIn {
+    from {
+        opacity: 0;
+        transform: translateY(-50px) scale(0.9);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+.form-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 2rem 2rem 1rem;
+    border-bottom: 1px solid var(--glass-border);
+}
+
+.form-title {
+    color: var(--dark-text);
+    font-size: 1.8rem;
+    font-weight: 700;
+}
+
+.close-btn {
+    background: none;
+    border: none;
+    color: var(--dark-text-secondary);
+    font-size: 2rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    padding: 0.5rem;
+    border-radius: 50%;
+}
+
+.close-btn:hover {
+    background: var(--surface-green);
+    color: var(--primary-green);
+}
+
+/* Data Management Modal Styles */
+.data-management-card {
+    max-width: 800px;
+    width: 100%;
+    padding: 0;
+    margin: 0;
+}
+
+.data-management-form .form-section {
+    margin-bottom: 2rem;
+}
+
+.data-management-form .form-section:last-of-type {
+    margin-bottom: 0;
+}
+
+.data-management-form .section-title {
+    color: var(--primary-green);
+    font-size: 1.2rem;
+    font-weight: 600;
+    margin-bottom: 1.5rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.data-management-form .section-title::before {
+    content: "📊";
+    font-size: 1rem;
+}
+
+.data-management-form .form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.5rem;
+    margin-bottom: 1.5rem;
+}
+
+.data-management-form .form-group {
+    position: relative;
+}
+
+.data-management-form .form-label {
+    display: block;
+    color: var(--dark-text-secondary);
+    font-size: 0.9rem;
+    font-weight: 500;
+    margin-bottom: 0.5rem;
+    transition: color 0.3s ease;
+}
+
+.data-management-form .form-input {
+    width: 100%;
+    padding: 0.75rem 0;
+    background: transparent;
+    border: none;
+    border-bottom: 2px solid var(--glass-border);
+    color: var(--dark-text);
+    font-size: 1rem;
+    transition: all 0.3s ease;
+    outline: none;
+}
+
+.data-management-form .form-input:focus {
+    border-bottom-color: var(--primary-green);
+}
+
+.data-management-form .form-input:focus + .input-underline {
+    width: 100%;
+}
+
+.data-management-form .input-underline {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    height: 2px;
+    width: 0;
+    background: linear-gradient(90deg, var(--primary-green), var(--primary-green-light));
+    transition: width 0.3s ease;
+}
+
+.data-management-form {
+    padding: 2rem;
+}
+
+.data-management-form .form-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 1rem;
+    padding-top: 2rem;
+    border-top: 1px solid var(--glass-border);
+    margin-top: 2rem;
+}
+
+/* Animation for success notification */
+@keyframes slideInRight {
+    from {
+        transform: translateX(100%);
+        opacity: 0;
+    }
+    to {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+/* Responsive adjustments for data management modal */
+@media (max-width: 768px) {
+    .data-management-card {
+        margin: 1rem;
+        max-width: calc(100% - 2rem);
+    }
+    
+    .data-management-form .form-row {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+    }
+    
+    .data-management-form .form-actions {
+        flex-direction: column-reverse;
+    }
+    
+    .data-management-form .form-actions .btn {
+        width: 100%;
+    }
+}

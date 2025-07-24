@@ -3,22 +3,34 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>About Us | Cleanity</title>
+    <title>About Us - Cleanity</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
     <link rel="stylesheet" href="about.css">
 </head>
 <body>
+    <!-- Animated Background -->
+    <div class="background-animation">
+        <div class="floating-orb orb-1"></div>
+        <div class="floating-orb orb-2"></div>
+        <div class="floating-orb orb-3"></div>
+        <div class="floating-orb orb-4"></div>
+        <div class="floating-orb orb-5"></div>
+    </div>
+
+    <!-- Header -->
     <header class="glass-header">
         <nav class="nav-container">
             <div class="logo-container">
                 <div class="logo-animation">
-                    <img src="logo.jpeg" alt="Cleanity Logo" style="height:40px; width:40px; object-fit:cover; border-radius:50%; background:#fff;" />
+                    <div class="logo-broom">🧹</div>
+                    <span class="logo-text">Cleanity</span>
+                    <div class="logo-underline"></div>
                 </div>
             </div>
             <ul class="nav-menu">
                 <li><a href="index.html" class="nav-link">Home</a></li>
-                <li><a href="about.html" class="nav-link active">About Us</a></li>
-                <li><a href="about.html" class="nav-link">About Us</a></li>
+                <li><a href="about.html" class="nav-link active">About</a></li>
                 <li><a href="gallery.html" class="nav-link">Gallery</a></li>
                 <li><a href="team.html" class="nav-link">Our Team</a></li>
                 <li><a href="contact.html" class="nav-link">Contact</a></li>
@@ -31,38 +43,259 @@
             </div>
         </nav>
     </header>
-    <main class="about-container">
-        <section class="about-hero">
-            <h1>About Us</h1>
-            <p>Empowering youth for a cleaner, greener future.</p>
-        </section>
-        <section class="about-mission">
-            <h2>Our Mission</h2>
-            <p>Cleanity is a youth-driven initiative, that prides itself on direct environmental and action, through community based cleanups, education, and programming that is accessible. Cleanity is focused on reducing waste from shared spaces, changing the public's perception of responsiblity, and making participation in any environmental action something that is real, ongoing, rather than intangible and intermittent. Cleanity believes that real change starts at home. This could mean day-of events, organizing cleanups in parks or neighborhoods, creating systems and tools that would allow volunteers to manage and quantify their efforts, and creating educational opportunities for younger students, about sustainability and the effect of waste in the long run. Our work embodies reliability and experiential learning, we want to teach youth that they care about waste, the environment, and the future.</p>
-            <p>To us environmental degradation is not something that is abstract, it is present, visible, and urgent. It is something we walk past, every day. Cleanity exists in that awareness and is looking for ways to find real solutions created by the people who deal with it. We do not believe that we should rely on institutions or hierarchical organization, we believe that our grassroots work is a response to 'top down' organizations working in the community and youth can lead their own community. Our method is collaborative, and responsive, it also celebrates the idea that public spaces are worth caring for, and when participants, particularly youth, are offered all the tools and space to participate, they will effect real, tangible change.</p>
-        </section>
-        <section class="about-values">
-            <h2>Our Values</h2>
-            <ul>
-                <li><strong>Community:</strong> We believe in the power of collective action and local engagement.</li>
-                <li><strong>Education:</strong> We empower youth and communities through accessible learning.</li>
-                <li><strong>Responsibility:</strong> We foster a sense of ownership for our shared environment.</li>
-                <li><strong>Transparency:</strong> We are open about our methods, results, and goals.</li>
-                <li><strong>Inclusivity:</strong> Everyone is welcome to join and contribute.</li>
-            </ul>
-        </section>
-        <section class="about-vision">
-            <h2>Our Vision</h2>
-            <p>To create a world where every individual feels empowered and responsible for the environment, and where youth lead the way in sustainable action and innovation.</p>
-        </section>
-        <section class="about-history">
-            <h2>Our Story</h2>
-            <p>Founded by a group of passionate young people, Cleanity started as a small neighborhood cleanup and quickly grew into a movement. Our journey is defined by hands-on action, learning, and a commitment to making a real difference in our communities.</p>
-        </section>
-    </main>
-    <footer>
-        <p>&copy; 2024 Cleanity. All rights reserved.</p>
-    </footer>
+
+    <!-- About Hero Section -->
+    <section class="about-hero">
+        <div class="about-hero-container">
+            <div class="about-hero-content">
+                <div class="hero-badge">
+                    <span class="badge-text">🌍 Youth-Led Environmental Action</span>
+                </div>
+                <h1 class="about-hero-title">
+                    <span class="title-line">About</span>
+                    <span class="title-line title-accent">Cleanity</span>
+                </h1>
+                <p class="about-hero-description">
+                    We are a global community of young people who believe that real environmental change starts at home, 
+                    in our neighborhoods, and with direct action that makes a tangible difference.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Our Mission Section -->
+    <section class="mission-detailed-section">
+        <div class="section-container">
+            <div class="section-header">
+                <h2 class="section-title">Our Mission</h2>
+                <p class="section-subtitle">Real change starts at home</p>
+            </div>
+            <div class="mission-content">
+                <div class="mission-text-card">
+                    <p class="mission-paragraph">
+                        Cleanity is a youth-driven initiative, that prides itself on direct environmental and action, through community based cleanups, education, and programming that is accessible. Cleanity is focused on reducing waste from shared spaces, changing the public's perception of responsiblity, and making participation in any environmental action something that is real, ongoing, rather than intangible and intermittent. Cleanity believes that real change starts at home. This could mean day-of events, organizing cleanups in parks or neighborhoods, creating systems and tools that would allow volunteers to manage and quantify their efforts, and creating educational opportunities for younger students, about sustainability and the effect of waste in the long run. Our work embodies reliability and experiential learning, we want to teach youth that they care about waste, the environment, and the future.
+                    </p>
+                    <p class="mission-paragraph">
+                        To us environmental degradation is not something that is abstract, it is present, visible, and urgent. It is something we walk past, every day. Cleanity exists in that awareness and is looking for ways to find real solutions created by the people who deal with it. We do not believe that we should rely on institutions or hierarchical organization, we believe that our grassroots work is a response to 'top down' organizations working in the community and youth can lead their own community. Our method is collaborative, and responsive, it also celebrates the idea that public spaces are worth caring for, and when participants, particularly youth, are offered all the tools and space to participate, they will effect real, tangible change.
+                    </p>
+                </div>
+                <div class="mission-visual">
+                    <div class="mission-stats-card">
+                        <div class="stat-item">
+                            <div class="stat-icon">🌱</div>
+                            <div class="stat-number">200+</div>
+                            <div class="stat-label">Active Members</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-icon">🌍</div>
+                            <div class="stat-number">5</div>
+                            <div class="stat-label">Cities Active</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-icon">♻️</div>
+                            <div class="stat-number">2.5M</div>
+                            <div class="stat-label">Pieces Collected</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-icon">🎯</div>
+                            <div class="stat-number">20+</div>
+                            <div class="stat-label">Events Organized</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Our Story Section -->
+    <section class="story-section">
+        <div class="section-container">
+            <div class="section-header">
+                <h2 class="section-title">Our Story</h2>
+                <p class="section-subtitle">How we got started</p>
+            </div>
+            <div class="story-content">
+                <div class="story-timeline">
+                    <div class="timeline-item">
+                        <div class="timeline-icon">💡</div>
+                        <div class="timeline-content">
+                            <h3 class="timeline-title">The Idea</h3>
+                            <p class="timeline-description">
+                                Started by young people who were tired of seeing environmental problems discussed without direct action. 
+                                We realized that waiting for others to fix the world wasn't working.
+                            </p>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-icon">🤝</div>
+                        <div class="timeline-content">
+                            <h3 class="timeline-title">Community Building</h3>
+                            <p class="timeline-description">
+                                We began organizing local cleanup events, connecting with like-minded youth, and building 
+                                a network of people who wanted to make real, tangible change in their communities.
+                            </p>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-icon">🚀</div>
+                        <div class="timeline-content">
+                            <h3 class="timeline-title">Global Expansion</h3>
+                            <p class="timeline-description">
+                                Today, we operate in multiple cities worldwide, empowering youth to lead environmental 
+                                action in their own neighborhoods and creating lasting change from the ground up.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Our Values Section -->
+    <section class="values-section">
+        <div class="section-container">
+            <div class="section-header">
+                <h2 class="section-title">Our Values</h2>
+                <p class="section-subtitle">What drives us forward</p>
+            </div>
+            <div class="values-grid">
+                <div class="value-card">
+                    <div class="value-icon">⚡</div>
+                    <h3 class="value-title">Direct Action</h3>
+                    <p class="value-description">
+                        We believe in taking immediate, tangible action rather than waiting for systemic change. 
+                        Every cleanup, every piece of trash collected, every community educated makes a real difference.
+                    </p>
+                </div>
+                <div class="value-card">
+                    <div class="value-icon">👥</div>
+                    <h3 class="value-title">Youth Leadership</h3>
+                    <p class="value-description">
+                        Young people have the energy, creativity, and stake in the future that make them natural environmental leaders. 
+                        We empower youth to lead their communities.
+                    </p>
+                </div>
+                <div class="value-card">
+                    <div class="value-icon">🌱</div>
+                    <h3 class="value-title">Grassroots Approach</h3>
+                    <p class="value-description">
+                        Real change happens from the bottom up. We focus on community-level solutions that can be 
+                        implemented by local teams and scaled organically.
+                    </p>
+                </div>
+                <div class="value-card">
+                    <div class="value-icon">🎓</div>
+                    <h3 class="value-title">Education & Learning</h3>
+                    <p class="value-description">
+                        We combine action with education, teaching sustainability principles and environmental awareness 
+                        through hands-on experience and community engagement.
+                    </p>
+                </div>
+                <div class="value-card">
+                    <div class="value-icon">🔄</div>
+                    <h3 class="value-title">Ongoing Commitment</h3>
+                    <p class="value-description">
+                        Environmental action isn't a one-time event. We build systems and habits that create 
+                        lasting change through consistent, regular community involvement.
+                    </p>
+                </div>
+                <div class="value-card">
+                    <div class="value-icon">🌍</div>
+                    <h3 class="value-title">Global Impact</h3>
+                    <p class="value-description">
+                        While we work locally, we think globally. Our network of communities shares knowledge, 
+                        strategies, and support to amplify our collective impact.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Impact Section -->
+    <section class="impact-section">
+        <div class="section-container">
+            <div class="section-header">
+                <h2 class="section-title">Our Impact</h2>
+                <p class="section-subtitle">Making a difference, one action at a time</p>
+            </div>
+            <div class="impact-content">
+                <div class="impact-grid">
+                    <div class="impact-card">
+                        <div class="impact-visual">
+                            <div class="impact-circle">
+                                <div class="circle-progress" data-progress="78"></div>
+                                <div class="circle-text">
+                                    <span class="circle-number">2.5M</span>
+                                    <span class="circle-label">Pieces of Trash</span>
+                                </div>
+                            </div>
+                        </div>
+                        <h3 class="impact-title">Waste Collected</h3>
+                        <p class="impact-description">
+                            Over 2.5 million pieces of trash removed from public spaces, parks, 
+                            beaches, and neighborhoods across our network.
+                        </p>
+                    </div>
+                    <div class="impact-card">
+                        <div class="impact-visual">
+                            <div class="impact-circle">
+                                <div class="circle-progress" data-progress="65"></div>
+                                <div class="circle-text">
+                                    <span class="circle-number">1,200</span>
+                                    <span class="circle-label">Students Educated</span>
+                                </div>
+                            </div>
+                        </div>
+                        <h3 class="impact-title">Education Reach</h3>
+                        <p class="impact-description">
+                            Educational programs reaching over 1,200 students, teaching sustainability 
+                            and environmental responsibility through experiential learning.
+                        </p>
+                    </div>
+                    <div class="impact-card">
+                        <div class="impact-visual">
+                            <div class="impact-circle">
+                                <div class="circle-progress" data-progress="85"></div>
+                                <div class="circle-text">
+                                    <span class="circle-number">15</span>
+                                    <span class="circle-label">Community Partners</span>
+                                </div>
+                            </div>
+                        </div>
+                        <h3 class="impact-title">Partnerships</h3>
+                        <p class="impact-description">
+                            Collaborating with 15 community organizations, schools, and local governments 
+                            to amplify our environmental impact.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Call to Action Section -->
+    <section class="cta-section">
+        <div class="section-container">
+            <div class="cta-content">
+                <h2 class="cta-title">Ready to Make a Difference?</h2>
+                <p class="cta-description">
+                    Join our global community of young environmental leaders. Together, we can create the change we want to see.
+                </p>
+                <div class="cta-buttons">
+                    <a href="join.html" class="btn btn-primary">
+                        <span>Join the Movement</span>
+                        <div class="btn-ripple"></div>
+                    </a>
+                    <a href="contact.html" class="btn btn-secondary">
+                        <span>Get in Touch</span>
+                        <div class="btn-ripple"></div>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script src="script.js"></script>
     <script src="about.js"></script>
 </body>
-</html> 
+</html>

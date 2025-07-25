@@ -20,7 +20,7 @@ document.addEventListener('DOMContentLoaded', function() {
         'ada-nur-eskikoyuncu': {
             name: 'Ada Nur Eskikoyuncu',
             role: 'Local Coordinator',
-            location: 'Ankara, Turkey',
+            location: 'Diyarbakır, Turkey',
             image: 'Ada Nur Eskikoyuncu.jpeg',
             description: `Hi, my name is Ada Nur Eskikoyuncu. I'm 16 and a high school student. I've always been interested in science, and currently I am doing research about biology. I participated in competitions about science and got a degree from them. My aim is to get into the university I want, work deeply in my own field, and improve myself. I really want to team up with the students who have the same mindset as me, learn, and protect the environment. I'm proud to be in this community and hope we can reach our goals.`
         },
@@ -79,6 +79,13 @@ document.addEventListener('DOMContentLoaded', function() {
             location: 'Izmir, Turkey',
             image: 'Yiğit Kaan Kızlıer.jpeg',
             description: `Hello, my name is Yiğit Kaan Kızlıer. I'm 17 years old and currently a high school junior. I have a strong interest in scientific research, especially in the field of neuroscience. My goal is to pursue higher education abroad and contribute to academic studies in this area. I'm also actively involved in a volunteer project called "Aydınlık Gelecek," where we focus on social impact and community support. I joined this community to learn, grow, and connect with like-minded individuals. I'm glad to be here and look forward to meaningful interactions.`
+        },
+        'sude-naz-hakkioglu': {
+            name: 'Sude Naz Hakkıoğlu',
+            role: 'Local Coordinator',
+            location: 'Antalya, Turkey',
+            image: 'Sude Naz Hakkıoğlu.jpeg',
+            description: `My name is Sude Naz Hakkıoğlu. I'm 20 and I'm from Antalya. I want to organize my friends and inform people about climate change. I believe climate change is one of the biggest problems of world and informing people is the best way to start for preventing it. Me and my friends are eager to help to this project.`
         }
     };
     

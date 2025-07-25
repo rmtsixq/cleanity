@@ -1,4 +1,19 @@
-// Gallery Page JavaScript - New Implementation
+// Gallery Page JavaScript - Firebase Integration
+import { 
+    collection, 
+    addDoc, 
+    getDocs, 
+    query, 
+    orderBy, 
+    serverTimestamp 
+} from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
+import { 
+    ref, 
+    uploadBytes, 
+    getDownloadURL, 
+    deleteObject 
+} from "https://www.gstatic.com/firebasejs/10.7.1/firebase-storage.js";
+
 document.addEventListener('DOMContentLoaded', function() {
     
     // Password for admin access
@@ -17,11 +32,13 @@ document.addEventListener('DOMContentLoaded', function() {
     const cancelForm = document.getElementById('cancelForm');
     const galleryGrid = document.getElementById('galleryGrid');
 
-    // LocalStorage Key
-    const STORAGE_KEY = 'gallery_cards';
+    // Firebase Collections
+    const db = window.db;
+    const storage = window.storage;
+    const galleryCollection = collection(db, 'gallery');
 
-    // Load cards from localStorage on page load
-    loadCardsFromStorage();
+    // Load cards from Firebase on page load
+    loadCardsFromFirebase();
     
     // Event Listeners
     addNewBtn.addEventListener('click', showPasswordModal);
@@ -88,53 +105,85 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     }
     
-    function handleFormSubmit(e) {
+    async function handleFormSubmit(e) {
         e.preventDefault();
         
-        // Get form data
-        const cardData = {
-            name: document.getElementById('cardName').value,
-            description: document.getElementById('cardDescription').value,
-            date: document.getElementById('cardDate').value,
-            location: document.getElementById('cardLocation').value,
-            image: document.getElementById('cardImage').files[0]
-        };
+        // Show loading state
+        const submitBtn = document.querySelector('#addCardForm button[type="submit"]');
+        const originalText = submitBtn.textContent;
+        submitBtn.textContent = 'Uploading...';
+        submitBtn.disabled = true;
         
-        // Validate form
-        if (!cardData.name || !cardData.description || !cardData.date || !cardData.location || !cardData.image) {
-            alert('Please fill in all fields!');
-            return;
-        }
-        
-        // Convert image to base64 and then save
-        const reader = new FileReader();
-        reader.onload = function(event) {
-            cardData.imageBase64 = event.target.result;
-            saveCardToStorage(cardData);
-            createNewCard(cardData, true); // true: from form
+        try {
+            // Get form data
+            const cardData = {
+                name: document.getElementById('cardName').value,
+                description: document.getElementById('cardDescription').value,
+                date: document.getElementById('cardDate').value,
+                location: document.getElementById('cardLocation').value,
+                image: document.getElementById('cardImage').files[0]
+            };
+            
+            // Validate form
+            if (!cardData.name || !cardData.description || !cardData.date || !cardData.location || !cardData.image) {
+                alert('Please fill in all fields!');
+                return;
+            }
+            
+            // Upload image to Firebase Storage
+            const imageRef = ref(storage, `gallery/${Date.now()}_${cardData.image.name}`);
+            const uploadResult = await uploadBytes(imageRef, cardData.image);
+            const imageUrl = await getDownloadURL(uploadResult.ref);
+            
+            // Save card data to Firestore
+            const docData = {
+                name: cardData.name,
+                description: cardData.description,
+                date: cardData.date,
+                location: cardData.location,
+                imageUrl: imageUrl,
+                imagePath: uploadResult.ref.fullPath,
+                createdAt: serverTimestamp()
+            };
+            
+            await addDoc(galleryCollection, docData);
+            
+            // Create new card in UI
+            createNewCard({...docData, imageUrl}, true);
             hideAddCardModal();
-        };
-        reader.readAsDataURL(cardData.image);
+            
+            alert('Card added successfully!');
+            
+        } catch (error) {
+            console.error('Error adding card:', error);
+            alert('Error adding card. Please try again.');
+        } finally {
+            // Reset button state
+            submitBtn.textContent = originalText;
+            submitBtn.disabled = false;
+        }
     }
 
-    function saveCardToStorage(cardData) {
-        // Remove File object, only keep base64
-        const cardToSave = {
-            name: cardData.name,
-            description: cardData.description,
-            date: cardData.date,
-            location: cardData.location,
-            imageBase64: cardData.imageBase64
-        };
-        let cards = JSON.parse(localStorage.getItem(STORAGE_KEY)) || [];
-        cards.unshift(cardToSave); // Add to start
-        localStorage.setItem(STORAGE_KEY, JSON.stringify(cards));
+    async function loadCardsFromFirebase() {
+        try {
+            const q = query(galleryCollection, orderBy('createdAt', 'desc'));
+            const querySnapshot = await getDocs(q);
+            
+            querySnapshot.forEach((doc) => {
+                const cardData = doc.data();
+                createNewCard(cardData, false);
+            });
+        } catch (error) {
+            console.error('Error loading cards:', error);
+            // Fallback to localStorage if Firebase fails
+            loadCardsFromStorage();
+        }
     }
 
     function loadCardsFromStorage() {
-        let cards = JSON.parse(localStorage.getItem(STORAGE_KEY)) || [];
+        let cards = JSON.parse(localStorage.getItem('gallery_cards')) || [];
         cards.forEach(card => {
-            createNewCard(card, false); // false: from storage
+            createNewCard(card, false);
         });
     }
     
@@ -152,8 +201,8 @@ document.addEventListener('DOMContentLoaded', function() {
             day: 'numeric'
         });
         
-        // Use base64 image
-        const imageUrl = cardData.imageBase64;
+        // Use Firebase Storage URL or fallback to base64
+        const imageUrl = cardData.imageUrl || cardData.imageBase64;
         
         cardElement.innerHTML = `
             <div class="glass-card gallery-card">

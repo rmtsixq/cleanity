@@ -96,8 +96,18 @@ document.addEventListener('DOMContentLoaded', function() {
     const hasHover = window.matchMedia('(hover: hover) and (pointer: fine)').matches;
     
     memberCards.forEach(card => {
-        const memberElement = card.closest('.team-member');
-        const memberId = memberElement.getAttribute('data-member');
+        let memberElement = card.closest('.team-member');
+        let memberId = null;
+        if (memberElement) {
+            memberId = memberElement.getAttribute('data-member');
+        }
+        // Eğer closest ile bulamazsa, parentElement veya card'ın kendisi üzerinden dene
+        if (!memberId && card.parentElement && card.parentElement.classList.contains('team-member')) {
+            memberId = card.parentElement.getAttribute('data-member');
+        }
+        if (!memberId && card.hasAttribute('data-member')) {
+            memberId = card.getAttribute('data-member');
+        }
         
         if (hasHover) {
             // Desktop: hover effects
@@ -124,9 +134,10 @@ document.addEventListener('DOMContentLoaded', function() {
         card.addEventListener('click', function(e) {
             e.preventDefault();
             e.stopPropagation();
-            
             if (memberId && memberData[memberId]) {
                 showMemberModal(memberData[memberId]);
+            } else {
+                console.warn('Takım üyesi ID bulunamadı veya memberData eksik:', memberId);
             }
         });
     });

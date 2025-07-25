@@ -496,3 +496,43 @@
         font-size: 0.9rem;
     }
 }
+
+/* Modal temel görünürlük ve konumlandırma düzeltmesi */
+#memberModal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: 2000;
+    overflow-y: auto;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    background: rgba(0,0,0,0.7);
+}
+#memberModal[style*="display: block"] {
+    display: flex !important;
+}
+#closeMemberModal {
+    position: absolute;
+    top: 1.2rem;
+    right: 1.5rem;
+    font-size: 2.2rem;
+    color: #fff;
+    background: rgba(0,0,0,0.18);
+    border: none;
+    border-radius: 50%;
+    width: 2.7rem;
+    height: 2.7rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: background 0.2s, color 0.2s;
+    z-index: 10;
+}
+#closeMemberModal:hover {
+    background: #fff;
+    color: #16b981;
+}

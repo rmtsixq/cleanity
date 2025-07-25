@@ -5,7 +5,9 @@ import {
     getDocs, 
     query, 
     orderBy, 
-    serverTimestamp 
+    serverTimestamp,
+    deleteDoc,
+    doc
 } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
 import { 
     ref, 
@@ -92,6 +94,8 @@ document.addEventListener('DOMContentLoaded', function() {
         const enteredPassword = passwordInput.value.trim();
         
         if (enteredPassword === ADMIN_PASSWORD) {
+            window.isAdmin = true;
+            loadCardsFromFirebase();
             showAddCardModal();
         } else {
             passwordError.style.display = 'block';
@@ -165,6 +169,12 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     async function loadCardsFromFirebase() {
+        // Sadece add-new-item hariç tüm kartları temizle
+        Array.from(galleryGrid.querySelectorAll('.gallery-item')).forEach(item => {
+            if (!item.classList.contains('add-new-item')) {
+                item.remove();
+            }
+        });
         try {
             const q = query(galleryCollection, orderBy('createdAt', 'desc'));
             const querySnapshot = await getDocs(q);
@@ -204,6 +214,12 @@ document.addEventListener('DOMContentLoaded', function() {
         // Use Firebase Storage URL or fallback to base64
         const imageUrl = cardData.imageUrl || cardData.imageBase64;
         
+        // Silme butonu (sadece admin için)
+        let deleteBtnHTML = '';
+        if (window.isAdmin) {
+            deleteBtnHTML = `<button class="delete-btn" title="Delete">🗑️</button>`;
+        }
+        
         cardElement.innerHTML = `
             <div class="glass-card gallery-card">
                 <div class="card-image">
@@ -212,6 +228,7 @@ document.addEventListener('DOMContentLoaded', function() {
                         <button class="view-btn">
                             <span>View Details</span>
                         </button>
+                        ${deleteBtnHTML}
                     </div>
                 </div>
                 <div class="card-content">
@@ -241,6 +258,39 @@ document.addEventListener('DOMContentLoaded', function() {
             e.stopPropagation();
             showCardDetails(cardData, imageUrl);
         });
+        
+        // Silme butonu event
+        const deleteBtn = cardElement.querySelector('.delete-btn');
+        if (deleteBtn) {
+            deleteBtn.addEventListener('click', async function(e) {
+                e.stopPropagation();
+                if (!confirm('Bu kartı silmek istediğine emin misin?')) return;
+                try {
+                    // Firestore'dan sil
+                    const q = query(galleryCollection, orderBy('createdAt', 'desc'));
+                    const querySnapshot = await getDocs(q);
+                    let docIdToDelete = null;
+                    querySnapshot.forEach((doc) => {
+                        const d = doc.data();
+                        if (d.imageUrl === cardData.imageUrl && d.name === cardData.name) {
+                            docIdToDelete = doc.id;
+                        }
+                    });
+                    if (docIdToDelete) {
+                        await deleteDoc(doc(db, 'gallery', docIdToDelete));
+                    }
+                    // Storage'dan sil
+                    if (cardData.imagePath) {
+                        await deleteObject(ref(storage, cardData.imagePath));
+                    }
+                    // Kartı ekrandan kaldır
+                    cardElement.remove();
+                    alert('Kart silindi!');
+                } catch (err) {
+                    alert('Silme işlemi başarısız: ' + err.message);
+                }
+            });
+        }
         
         // Update stats (optional)
         updateGalleryStats();

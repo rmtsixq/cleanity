@@ -47,8 +47,8 @@ document.addEventListener('DOMContentLoaded', function() {
         },
         'rumet-asan': {
             name: 'Rumet Asan',
-            role: 'Head Of IT and King',
-            location: 'Ankara, Turkey',
+            role: 'Head Of IT',
+            location: 'Diyarbakır, Turkey',
             image: 'rumetasan.jpeg',
             description: `Tech enthusiast dedicated to building a better, cleaner world through innovative digital solutions. Rumet combines technical expertise with environmental passion to create cutting-edge platforms that amplify our impact. His work in developing digital tools for environmental tracking, community engagement, and educational resources has revolutionized how we approach environmental action in the digital age. He believes that technology, when used responsibly, can be one of our most powerful tools for creating positive environmental change.`
         },

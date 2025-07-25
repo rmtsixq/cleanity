@@ -19,7 +19,7 @@ import {
 document.addEventListener('DOMContentLoaded', function() {
     
     // Password for admin access
-    const ADMIN_PASSWORD = 'sayınmehmetruzgarbeyhoca';
+    const ADMIN_PASSWORD = 'aras';
     
     // DOM Elements
     const addNewBtn = document.getElementById('addNewBtn');

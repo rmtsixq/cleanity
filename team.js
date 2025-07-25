@@ -35,7 +35,7 @@ document.addEventListener('DOMContentLoaded', function() {
             name: 'Arda Kaan Turhan',
             role: 'Local Coordinator',
             location: 'Istanbul, Turkey',
-            image: 'Arda Kaan Turhan.jpeg',
+            image: 'placeholder',
             description: `My name is Arda, I would like to give world a better vision. And the first stop of it is clean environment. In the cleanity community, I'll work as local coordinator. We will take part in diverse of activities. As a responsible content creator, social impact advocate or a student, I will do whatever I can in available circumstances.`
         },
         'alina-burdukovskaia': {
@@ -56,7 +56,7 @@ document.addEventListener('DOMContentLoaded', function() {
             name: 'Oğuz Abdullah Küçükkılınç',
             role: 'Local Coordinator',
             location: 'Istanbul, Turkey',
-            image: 'placeholder',
+            image: 'Arda Kaan Turhan.jpeg',
             description: `Motivated to turn ideas into action for a greener future, Oğuz excels at project management and community mobilization. His strategic thinking and execution skills have led to successful environmental campaigns that create lasting change. He has a particular talent for identifying opportunities for environmental improvement and developing practical solutions that communities can implement. Oğuz's approach emphasizes sustainable practices that can be maintained long-term while creating measurable environmental benefits.`
         },
         'lena-deniz-zorcu': {
@@ -70,7 +70,7 @@ document.addEventListener('DOMContentLoaded', function() {
             name: 'Bora Boroğlu',
             role: 'Local Coordinator',
             location: 'Kocaeli, Turkey',
-            image: 'placeholder',
+            image: 'Bora Boroğlu.jpeg',
             description: `Hello, I'm Bora, 17 years old. I live in Kocaeli, Turkey, and I'm currently a 12th grader at Ülkün Yalçın Anatolian High School. I really enjoy being active I like running, cycling, and playing basketball. I'm also interested in kickboxing. Doing sports helps me feel relaxed and refreshed, which is why it's such a big part of my life. I also love spending time in nature. I enjoy walking in natural places and taking photos of landscapes. I joined this club because I care about the environment, and I want to help raise awareness about nature among people. As someone who loves both sports and the outdoors, I believe this club is a great opportunity to do something meaningful.`
         },
         'yigit-kaan-kizlier': {

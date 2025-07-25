@@ -21,8 +21,8 @@ document.addEventListener('DOMContentLoaded', function() {
             name: 'Ada Nur Eskikoyuncu',
             role: 'Local Coordinator',
             location: 'Ankara, Turkey',
-            image: 'placeholder',
-            description: `Always ready to inspire and mobilize her local community, Ada brings exceptional organizational skills and passionate dedication to environmental causes. Her ability to connect with people from all walks of life makes her an invaluable asset to our team. Ada has a special talent for turning ideas into action and creating sustainable programs that benefit both the environment and local communities. Her leadership style emphasizes collaboration, innovation, and long-term thinking for environmental sustainability.`
+            image: 'Ada Nur Eskikoyuncu.jpeg',
+            description: `Hi, my name is Ada Nur Eskikoyuncu. I'm 16 and a high school student. I've always been interested in science, and currently I am doing research about biology. I participated in competitions about science and got a degree from them. My aim is to get into the university I want, work deeply in my own field, and improve myself. I really want to team up with the students who have the same mindset as me, learn, and protect the environment. I'm proud to be in this community and hope we can reach our goals.`
         },
         'civan-ure': {
             name: 'Civan Üre',
@@ -49,7 +49,7 @@ document.addEventListener('DOMContentLoaded', function() {
             name: 'Rumet Asan',
             role: 'Head Of IT and King',
             location: 'Ankara, Turkey',
-            image: 'placeholder',
+            image: 'rumetasan.jpeg',
             description: `Tech enthusiast dedicated to building a better, cleaner world through innovative digital solutions. Rumet combines technical expertise with environmental passion to create cutting-edge platforms that amplify our impact. His work in developing digital tools for environmental tracking, community engagement, and educational resources has revolutionized how we approach environmental action in the digital age. He believes that technology, when used responsibly, can be one of our most powerful tools for creating positive environmental change.`
         },
         'oguz-abdullah-kucukkilinc': {
@@ -77,7 +77,7 @@ document.addEventListener('DOMContentLoaded', function() {
             name: 'Yiğit Kaan Kızlıer',
             role: 'Research Coordinator',
             location: 'Izmir, Turkey',
-            image: 'placeholder',
+            image: 'Yiğit Kaan Kızlıer.jpeg',
             description: `Hello, my name is Yiğit Kaan Kızlıer. I'm 17 years old and currently a high school junior. I have a strong interest in scientific research, especially in the field of neuroscience. My goal is to pursue higher education abroad and contribute to academic studies in this area. I'm also actively involved in a volunteer project called "Aydınlık Gelecek," where we focus on social impact and community support. I joined this community to learn, grow, and connect with like-minded individuals. I'm glad to be here and look forward to meaningful interactions.`
         }
     };

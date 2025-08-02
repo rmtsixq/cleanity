@@ -86,6 +86,13 @@ document.addEventListener('DOMContentLoaded', function() {
             location: 'Antalya, Turkey',
             image: 'Sude Naz Hakkıoğlu.jpeg',
             description: `My name is Sude Naz Hakkıoğlu. I'm 20 and I'm from Antalya. I want to organize my friends and inform people about climate change. I believe climate change is one of the biggest problems of world and informing people is the best way to start for preventing it. Me and my friends are eager to help to this project.`
+        },
+        'zumrut': {
+            name: 'Zümrüt Azra Koca',
+            role: 'Istanbul Local Coordinator',
+            location: 'Istanbul, Turkey',
+            image: 'zumrut.jpg',
+            description: `Hi, I'm Zümrüt, and I'm 16. I'm really curious about people. I always think about; how we think, feel, and connect with each other. I love learning about psychology and archaeology because they help me understand where we come from, what are we and why we like this. I believe that if we understand ourselves and our past better, we can make a better future.`
         }
     };
     
